@@ -11,3 +11,5 @@ Cgm2002 - Chanze McDowell - cmcdo018@odu.edu
 ddela008 - Denise Dela Cruz - ddela008@odu.edu
 
 kaylatucker - Kayla Tucker - ktuck011@odu.edu
+
+CarosiJake - **Jake Carosi Primes** - jcaro005@odu.edu
