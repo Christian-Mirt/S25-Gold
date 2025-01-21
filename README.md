@@ -6,7 +6,8 @@ yomnaE1 - Yomna Elmousalami - yelmo001@odu.edu
 
 christian-mirt - Christian Mirt - cmirt001@odu.edu
 
-
 Cgm2002 - Chanze McDowell - cmcdo018@odu.edu 
 
 ddela008 - Denise Dela Cruz - ddela008@odu.edu
+
+ktuck011 - Kayla Tucker - ktuck011@odu.edu
