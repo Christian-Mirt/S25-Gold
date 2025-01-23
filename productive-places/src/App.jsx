@@ -25,6 +25,7 @@ function App() {
         <button class = "signUp">Sign-Up</button>
         <button class = "signIn">Sign-in</button>
       </div>
+      <input type="text" placeholder="Search.." class = "searchBttn"></input>
       <h2 class = "subtitle">Let's Find your favorite study spot</h2>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)} class = "countBttn">

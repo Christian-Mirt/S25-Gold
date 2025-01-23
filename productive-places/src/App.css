@@ -52,6 +52,12 @@
   transform: translate(-270px, -380px);
 }
 
+.searchBttn{
+  transform: translate(180px, -417px);
+  border-radius: 10px;
+  padding: 8px;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
