@@ -28,6 +28,30 @@
   transform: translateX(-450px);
 }
 
+.Home{
+  transform: translate(-370px, -380px);
+}
+
+.search{
+  transform: translate(-350px, -380px);
+}
+
+.places{
+  transform: translate(-330px, -380px);
+}
+
+.contact{
+  transform: translate(-310px, -380px);
+}
+
+.signUp{
+  transform: translate(-290px, -380px);
+}
+
+.signIn{
+  transform: translate(-270px, -380px);
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
