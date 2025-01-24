@@ -7,7 +7,7 @@
 
 .Main_Title, .subtitle{
   color: white;
-  transform: translateX(-450px);
+  transform: translate(-450px, 20px);
 }
 
 .signBttn{
@@ -19,41 +19,41 @@
 .Home{
   background-color: white;
   color: black;
-  transform: translate(-370px, -200px);
+  transform: translate(-370px, -170px);
 }
 
 .search{
-  transform: translate(-350px, -200px);
+  transform: translate(-350px, -170px);
 }
 
 .places{
   background-color: white;
   color: black;
-  transform: translate(-330px, -200px);
+  transform: translate(-330px, -170px);
 }
 
 .contact{
   background-color: white;
   color: black;
-  transform: translate(-310px, -200px);
+  transform: translate(-310px, -170px);
 }
 
 .signUp{
   background-color: white;
   color: black;
-  transform: translate(-290px, -200px);
+  transform: translate(-290px, -170px);
 }
 
 .signIn{
   background-color: white;
   color: black;
-  transform: translate(-270px, -200px);
+  transform: translate(-270px, -170px);
 }
 
 .searchBttn{
   background-color: white;
   color: black;
-  transform: translate(150px, -240px);
+  transform: translate(150px, -210px);
   border-radius: 10px;
   padding: 8px;
 }
@@ -71,11 +71,14 @@
 .user{
   border-radius: 10px;
   width: 80%;
+  font-size: 20px;
+  margin: 20px 0;
 }
 
 .pass{
   border-radius: 10px;
   width: 80%;
+  font-size: 20px;
 }
 
 .forgot{
