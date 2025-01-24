@@ -20,9 +20,9 @@ function App() {
         <form action = "">
           <h1 class = "signHeader">Sign Up</h1>
           <input type = "text" placeholder='Username' required class = "user"></input><br/>
-          <input type = "text" placeholder='Password' required class = "pass"></input>
-          <label><input id="rememberme" name="rememberme" value="remember" type="checkbox" />Remember Me</label> 
-          <a href = "#">Forgot Password?</a>
+          <input type = "text" placeholder='Password' required class = "pass"></input><br/>
+          <label><input id="rememberme" name="rememberme" value="remember" type="checkbox" />Remember Me</label><br/> 
+          <a href = "#" class = "forgot">Forgot Password?</a>
         </form>
       </div>
       <h2 class = "subtitle">Let's Find your favorite study spot</h2>

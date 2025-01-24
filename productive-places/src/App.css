@@ -69,8 +69,17 @@
 }
 
 .user{
-  background: transparent;
-  border: none;
+  border-radius: 10px;
+  width: 80%;
+}
+
+.pass{
+  border-radius: 10px;
+  width: 80%;
+}
+
+.forgot{
+  color: white;
 }
 
 @keyframes logo-spin {
