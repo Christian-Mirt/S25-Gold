@@ -15,9 +15,6 @@
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
 
 .Main_Title, .subtitle{
   color: white;
@@ -25,10 +22,14 @@
 }
 
 .countBttn{
+  background-color: white;
+  color: black;
   transform: translateX(-450px);
 }
 
 .Home{
+  background-color: white;
+  color: black;
   transform: translate(-370px, -380px);
 }
 
@@ -37,23 +38,33 @@
 }
 
 .places{
+  background-color: white;
+  color: black;
   transform: translate(-330px, -380px);
 }
 
 .contact{
+  background-color: white;
+  color: black;
   transform: translate(-310px, -380px);
 }
 
 .signUp{
+  background-color: white;
+  color: black;
   transform: translate(-290px, -380px);
 }
 
 .signIn{
+  background-color: white;
+  color: black;
   transform: translate(-270px, -380px);
 }
 
 .searchBttn{
-  transform: translate(180px, -417px);
+  background-color: white;
+  color: black;
+  transform: translate(160px, -419px);
   border-radius: 10px;
   padding: 8px;
 }
