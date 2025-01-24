@@ -5,23 +5,12 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-  transform: translate(-450px);
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
 .Main_Title, .subtitle{
   color: white;
   transform: translateX(-450px);
 }
 
-.countBttn{
+.signBttn{
   background-color: white;
   color: black;
   transform: translateX(-450px);
@@ -30,43 +19,58 @@
 .Home{
   background-color: white;
   color: black;
-  transform: translate(-370px, -380px);
+  transform: translate(-370px, -200px);
 }
 
 .search{
-  transform: translate(-350px, -380px);
+  transform: translate(-350px, -200px);
 }
 
 .places{
   background-color: white;
   color: black;
-  transform: translate(-330px, -380px);
+  transform: translate(-330px, -200px);
 }
 
 .contact{
   background-color: white;
   color: black;
-  transform: translate(-310px, -380px);
+  transform: translate(-310px, -200px);
 }
 
 .signUp{
   background-color: white;
   color: black;
-  transform: translate(-290px, -380px);
+  transform: translate(-290px, -200px);
 }
 
 .signIn{
   background-color: white;
   color: black;
-  transform: translate(-270px, -380px);
+  transform: translate(-270px, -200px);
 }
 
 .searchBttn{
   background-color: white;
   color: black;
-  transform: translate(160px, -419px);
+  transform: translate(150px, -240px);
   border-radius: 10px;
   padding: 8px;
+}
+
+.loginInfo{
+  width: 420px;
+  background-color:rgba(0,0,0,0.4);
+}
+
+.signHeader{
+  color: white;
+  font-size: 45px;
+}
+
+.user{
+  background: transparent;
+  border: none;
 }
 
 @keyframes logo-spin {
