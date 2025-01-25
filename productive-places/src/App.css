@@ -5,55 +5,61 @@
   text-align: center;
 }
 
-.Main_Title, .subtitle{
+.Main_Title{
   color: white;
-  transform: translate(-450px, 20px);
+  transform: translate(-460px, 60px);
+}
+
+.subtitle
+{
+  color: white;
+  transform: translate(-470px, -5px);
 }
 
 .signBttn{
   background-color: white;
   color: black;
-  transform: translateX(-450px);
+  transform: translate(-460px, -20px);
 }
 
 .Home{
   background-color: white;
   color: black;
-  transform: translate(-370px, -170px);
+  transform: translate(-370px, -120px);
 }
 
 .search{
-  transform: translate(-350px, -170px);
+  transform: translate(-350px, -120px);
 }
 
 .places{
   background-color: white;
   color: black;
-  transform: translate(-330px, -170px);
+  transform: translate(-330px, -120px);
 }
 
 .contact{
   background-color: white;
   color: black;
-  transform: translate(-310px, -170px);
+  transform: translate(-310px, -120px);
 }
 
 .signUp{
   background-color: white;
   color: black;
-  transform: translate(-290px, -170px);
+  transform: translate(-290px, -120px);
 }
 
 .signIn{
   background-color: white;
   color: black;
-  transform: translate(-270px, -170px);
+  transform: translate(-270px, -120px);
 }
 
 .searchBttn{
   background-color: white;
   color: black;
-  transform: translate(150px, -210px);
+  transform: translate(150px, -160px);
   border-radius: 10px;
   padding: 8px;
 }
@@ -61,28 +67,49 @@
 .loginInfo{
   width: 420px;
   background-color:rgba(0,0,0,0.4);
+  transform: translate(-370px, -30px);
 }
 
 .signHeader{
   color: white;
   font-size: 45px;
+  padding: 30px 40px;
+  transform: translateY(10px);
 }
 
 .user{
   border-radius: 10px;
   width: 80%;
-  font-size: 20px;
+  font-size: 25px;
   margin: 20px 0;
+  transform: translateY(-10px);
+  padding: 5px;
+}
+
+.user::placeholder, .pass::placeholder{
+  color: black;
 }
 
 .pass{
   border-radius: 10px;
   width: 80%;
-  font-size: 20px;
+  font-size: 25px;
+  transform: translateY(-20px);
+  margin: 20px 0;
+  padding: 5px;
 }
 
 .forgot{
   color: white;
+  position: relative;
+  top: -25px; 
+  left: 3px;
+}
+
+.remember{
+  color: white;
+  position: relative;
+  top: -25px; 
 }
 
 @keyframes logo-spin {

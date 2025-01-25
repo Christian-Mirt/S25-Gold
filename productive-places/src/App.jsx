@@ -21,7 +21,7 @@ function App() {
           <h1 class = "signHeader">Sign Up</h1>
           <input type = "text" placeholder='Username' required class = "user"></input><br/>
           <input type = "text" placeholder='Password' required class = "pass"></input><br/><br />
-          <label><input id="rememberme" name="rememberme" value="remember" type="checkbox" />Remember Me</label><br/> 
+          <label class = "remember"><input id="rememberme" name="rememberme" value="remember" type="checkbox"/>Remember Me</label><br/> 
           <a href = "#" class = "forgot">Forgot Password?</a>
         </form>
       </div>
