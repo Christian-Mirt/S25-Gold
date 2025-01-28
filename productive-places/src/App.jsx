@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <h1 className = "Main_Title">Productive Places</h1>
+      <h1 class = "Main_Title">Productive Places</h1>
       <div class = "nav_buttons">
         <button class = "Home">Home</button>
         <button class = "search">Search by Filter</button>
