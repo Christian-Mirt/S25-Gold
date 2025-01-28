@@ -30,6 +30,8 @@
 
 .search{
   transform: translate(-350px, -120px);
+  background-color: white;
+  color: black
 }
 
 .places{
