@@ -1,0 +1,17 @@
+.caption{
+  color: white;
+  transform: translate(-460px, -70px);
+}
+
+.material-symbols-outlined {
+  color: black;
+  font-size: 50px;
+}
+
+.nextBttn{
+  background-color:white;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-460px, -20px);
+}
