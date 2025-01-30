@@ -1,0 +1,14 @@
+.title{
+    color: white;
+    transform: translate(-460px, -60px);
+  }
+
+  .caption{
+    color: white;
+    transform: translate(-460px, -70px);
+  }
+
+  .nextBttn{
+    color: white;
+    border-radius: 50%;
+  }
