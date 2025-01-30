@@ -1,17 +1,17 @@
-import { useState } from 'react'
-import { StrictMode } from 'react'
-import viteLogo from '/vite.svg'
-import './App.css'
-import './SignUp.jsx'
-import SignUp from './SignUp.jsx'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
+import HomePage from './HomePage'; 
+import SignUp from './SignUp' 
 
 function App() {
-
-  return(
-    <div>
-      <SignUp />
-    </div>
-  )
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

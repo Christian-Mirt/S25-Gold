@@ -1,12 +1,13 @@
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import './SignUp.css'
 
 function SignUp(){
+    const navigate = useNavigate();
     return (
         <>
           <h1 className = "Main_Title">Productive Places</h1>
           <div className = "nav_buttons">
-            <button className = "Home">Home</button>
+            <button className = "Home" onClick = {() => {navigate("/")}}>Home</button>
             <button className = "search">Search by Filter</button>
             <button className = "places">Places</button>
             <button className = "contact">Contact</button>
