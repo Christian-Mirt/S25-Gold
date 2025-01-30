@@ -24,7 +24,7 @@ function SignUp(){
               <a href = "#" class = "forgot">Forgot Password?</a>
             </form>
           </div>
-          <h2 className = "subtitle">Let's Find your favorite study spot</h2>
+          <h2 className = "subtitle">Let's find your next favorite study spot!</h2>
           <div className="card">
             <button type = "submit" className = "signBttn">Sign Up</button>
           </div>

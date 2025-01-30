@@ -9,6 +9,56 @@
   }
 
   .nextBttn{
-    color: white;
+    color:white;
     border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    transform: translate(-70px, -20px);
   }
+
+.material-symbols-outlined {
+  color: black;
+  font-size: 50px;
+}
+
+.homeBttn{
+  background-color: white;
+  color: black;
+  transform: translate(-340px, -430px);
+}
+
+.searchingBttn{
+  background-color: white;
+  color: black;
+  transform: translate(-330px, -430px);
+}
+
+.placesBttn{
+  background-color: white;
+  color: black;
+  transform: translate(-320px, -430px);
+}
+
+.contactBttn{
+  background-color: white;
+  color: black;
+  transform: translate(-310px, -430px);
+}
+
+.signUpBttn{
+  background-color: white;
+  color: black;
+  transform: translate(-300px, -430px);
+}
+
+.signInBttn{
+  background-color: white;
+  color: black;
+  transform: translate(-280px, -430px);
+}
+
+.searchBttntwo{
+  background-color: white;
+  color: black;
+  transform: translate(-260px, -430px);
+}
