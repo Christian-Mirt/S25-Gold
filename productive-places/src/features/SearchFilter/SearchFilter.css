@@ -70,7 +70,7 @@
     width: 450px;
     position: relative;
     font-size: large; 
-    left: -220px;
+    left: -176px;
 }
 
 .food{
@@ -80,8 +80,16 @@
     width: 450px;
     position: relative;
     font-size: large;
-    left: -695px;
+    left: -650px;
     top: 55px;
+}
+
+.searchButton{
+    background-color: white;
+    color: black;
+    position: relative;
+    top: 130px;
+    left: -940px;
 }
 
 .rating::placeholder, .hours::placeholder, .wifi::placeholder, 

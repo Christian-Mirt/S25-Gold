@@ -14,6 +14,7 @@ function SearchFilter() {
       <input type="text" placeholder="Location" className = "loc"></input>
       <input type="text" placeholder="Popular Times" className = "pop"></input>
       <input type="text" placeholder="Food & Drink" className = "food"></input>
+      <button className='searchButton'>Search</button>
     </div>
   )
 }
