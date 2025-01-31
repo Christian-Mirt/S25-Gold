@@ -1,0 +1,71 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .subtitle
+  {
+    color: white;
+    transform: translate(-470px, -5px);
+  }
+  
+  .signBttn{
+    background-color: white;
+    color: black;
+    transform: translate(-480px, -20px);
+  }
+  
+  .loginInfo{
+    width: 420px;
+    background-color:rgba(0,0,0,0.4);
+    transform: translate(-460px, -30px);
+  }
+  
+  .loginHeader{
+    color: white;
+    font-size: 45px;
+    padding: 30px 40px;
+    transform: translateY(10px);
+  }
+  
+  .user{
+    border-radius: 10px;
+    width: 80%;
+    font-size: 25px;
+    margin: 20px 0;
+    transform: translateY(-10px);
+    padding: 5px;
+  }
+  
+  .user::placeholder, .pass::placeholder{
+    color: black;
+  }
+  
+  .pass{
+    border-radius: 10px;
+    width: 80%;
+    font-size: 25px;
+    transform: translateY(-20px);
+    margin: 20px 0;
+    padding: 5px;
+  }
+  
+  .forgot{
+    color: white;
+    position: relative;
+    top: -25px; 
+    left: 3px;
+  }
+  
+  .remember{
+    color: white;
+    position: relative;
+    top: -25px; 
+  }
+  
+  .card {
+    padding: 2em;
+  }
+  
