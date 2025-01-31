@@ -1,0 +1,90 @@
+.bigSearch{
+    width: 500px;
+    padding: 15px;
+    top: -120px;
+    left: -440px;
+    position: relative;
+    font-size: large;
+}
+
+.browseHeader{
+    color: white;
+    font-size: 40px;
+    top: -120px;
+    left: -40px;
+    position: relative;
+    max-width: 35%;
+    background-color:rgba(0,0,0,0.4);
+    padding: 20px 0px;
+    border-radius: 30px;
+}
+
+.rating{
+    background-color: #792e2e;
+    color: white;
+    padding: 10px;
+    width: 450px;
+    position: relative;
+    left: -220px;
+    top: -130px;
+    font-size: large;
+}
+
+.hours{
+    background-color: #792e2e;
+    color: white; 
+    padding: 10px;
+    width: 450px;
+    position: relative;
+    font-size: large;
+    left: -694px;
+    top: -75px;
+}
+
+.wifi{
+    background-color: #792e2e;
+    color: white; 
+    padding: 10px;
+    width: 450px;
+    position: relative;
+    font-size: large;
+    left: -220px;
+    top: -65px;
+}
+
+.loc{
+    background-color: #792e2e;
+    color: white; 
+    padding: 10px;
+    width: 450px;
+    position: relative;
+    font-size: large;
+    left: -695px;
+    top: -10px;
+}
+
+.pop{
+    background-color: #792e2e;
+    color: white; 
+    padding: 10px;
+    width: 450px;
+    position: relative;
+    font-size: large; 
+    left: -220px;
+}
+
+.food{
+    background-color: #792e2e;
+    color: white; 
+    padding: 10px;
+    width: 450px;
+    position: relative;
+    font-size: large;
+    left: -695px;
+    top: 55px;
+}
+
+.rating::placeholder, .hours::placeholder, .wifi::placeholder, 
+.loc::placeholder, .pop::placeholder, .food::placeholder{
+    color: white;
+}
