@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 export default function SignIn() {
 
   const navigate = useNavigate();
-  const { id } = 1;
+  const id = 1;
   const [user, setUser] = useState(null);
 
   const getUser = async (userId) => {
@@ -15,6 +15,7 @@ export default function SignIn() {
 
       if (response.ok) {
         setUser(result.data[0]);
+        console.log(result);
       } else {
         console.error("Error fetching user:", result);
       }
