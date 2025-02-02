@@ -10,7 +10,7 @@ export default function SignIn() {
   const getUser = async () => {
     const formBody = JSON.stringify({ id: target_id });
 
-    const result = await fetch(import.meta.env.VITE_API_KEY + `/user/${target_id}`, {
+    const result = await fetch(import.meta.env.VITE_API_KEY + '/user/', {
       method: "POST",
       body: formBody,
       headers: {
