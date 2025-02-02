@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy",
+    "build-and-deploy": "vite build && firebase deploy"
   },
   "dependencies": {
     "firebase-tools": "^13.29.3",
