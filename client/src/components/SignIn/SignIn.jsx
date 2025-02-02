@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 export default function SignIn() {
 
   const navigate = useNavigate();
-  const { id } = 0;
+  const { id } = 1;
   const [user, setUser] = useState(null);
 
   const getUser = async (userId) => {
