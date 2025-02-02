@@ -12,11 +12,14 @@ const myLogger = function (req, res, next) {
 }
 
 app.use(myLogger);
-app.use('/user', user);
 app.use(bodyParser.json());
 app.use(cors({
-    origin: "*"
+    origin: 'https://productive-places.web.app',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type']
 }));
+
+app.use('/user', user);
 
 app.listen(port, () => {
     console.log(`Server is running at port ${port}`);
