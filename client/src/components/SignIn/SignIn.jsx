@@ -5,22 +5,30 @@ import React, { useState, useEffect } from "react";
 export default function SignIn() {
 
   const navigate = useNavigate();
-  const id = 1;
+  const target_id = 1;
   const [user, setUser] = useState(null);
 
   const getUser = async (userId) => {
-    try {
-      const response = await fetch(import.meta.env.VITE_API_KEY + `/user/${userId}`);
-      const result = await response.json();
 
-      if (response.ok) {
-        setUser(result.data[0]);
-        console.log(result);
-      } else {
-        console.error("Error fetching user:", result);
+    const formBody = JSON.stringify({
+      id: target_id,
+    })
+
+    const result = await fetch(import.meta.env.VITE_API_KEY + '/user/:id', {
+      method: "POST",
+      body: formBody,
+      headers: {
+        'content-type': 'application/json'
       }
-    } catch (error) {
-      console.error("Fetch error:", error);
+    });
+
+    const data = await result.json();
+
+    if (data.status == 200) {
+      setUser(data.data[0]);
+      console.log(data);
+    } else {
+      console.log("Error fetching user");
     }
   };
 

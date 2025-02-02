@@ -5,7 +5,7 @@ const user = Router();
 user.post("/:id", (req, res) => {
     connection.execute(
         "select * from user_information where user_id=?",
-        [req.params.id],
+        [req.body.id],
         function (err, result) {
             if (err) {
                 res.json(err.message);
