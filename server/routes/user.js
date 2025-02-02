@@ -2,7 +2,7 @@ import { Router } from "express";
 import { connection } from "../database/database.js";
 const user = Router();
 
-user.post("/:id", (req, res) => {
+user.post("/", (req, res) => {
     connection.execute(
         "select * from user_information where user_id=?",
         [req.body.id],

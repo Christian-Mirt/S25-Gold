@@ -1,51 +1,47 @@
-import './SignIn.css'
-import { useNavigate, useParams } from 'react-router-dom';
+import './SignIn.css';
+import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 
 export default function SignIn() {
-
   const navigate = useNavigate();
   const target_id = 1;
   const [user, setUser] = useState(null);
 
-  const getUser = async (userId) => {
+  const getUser = async () => {
+    const formBody = JSON.stringify({ id: target_id });
 
-    const formBody = JSON.stringify({
-      id: target_id,
-    })
-
-    const result = await fetch(import.meta.env.VITE_API_KEY + '/user/:id', {
+    const result = await fetch(import.meta.env.VITE_API_KEY + `/user/${target_id}`, {
       method: "POST",
       body: formBody,
       headers: {
-        'content-type': 'application/json'
-      }
+        'content-type': 'application/json',
+      },
     });
 
     const data = await result.json();
 
-    if (data.status == 200) {
+    if (data.status === 200) {
       setUser(data.data[0]);
-      console.log(data);
     } else {
       console.log("Error fetching user");
     }
   };
 
   useEffect(() => {
-    if (id) {
-      getUser(id);
-    }
-  }, [id]);
+    getUser();
+  }, []);
 
   return (
     <>
       <div className="loginInfo">
         <form action="">
           <h1 className="loginHeader">Login</h1>
-          <input type="text" placeholder='Username' required className="user"></input><br />
-          <input type="password" placeholder='Password' required className="pass"></input><br /><br />
-          <label className="remember"><input id="rememberme" name="rememberme" value="remember" type="checkbox" />Remember Me</label><br />
+          <input type="text" placeholder="Username" required className="user" /><br />
+          <input type="password" placeholder="Password" required className="pass" /><br /><br />
+          <label className="remember">
+            <input id="rememberme" name="rememberme" value="remember" type="checkbox" />
+            Remember Me
+          </label><br />
           <a href="#" className="forgot">Forgot Password?</a>
         </form>
       </div>
@@ -58,6 +54,4 @@ export default function SignIn() {
       </div>
     </>
   );
-
 }
-
