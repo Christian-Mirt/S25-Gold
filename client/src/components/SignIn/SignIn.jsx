@@ -1,26 +1,54 @@
 import './SignIn.css'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
 
-function SignIn() {
+export default function SignIn() {
+
   const navigate = useNavigate();
+  const { id } = 0;
+  const [user, setUser] = useState(null);
 
-  return( 
+  const getUser = async (userId) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_KEY + `/user/${userId}`);
+      const result = await response.json();
+
+      if (response.ok) {
+        setUser(result.data[0]);
+      } else {
+        console.error("Error fetching user:", result);
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (id) {
+      getUser(id);
+    }
+  }, [id]);
+
+  return (
     <>
-    <div className = "loginInfo">
-      <form action = "">
-        <h1 className = "loginHeader">Login</h1>
-        <input type = "text" placeholder='Username' required className = "user"></input><br/>
-        <input type = "password" placeholder='Password' required className = "pass"></input><br/><br />
-        <label className = "remember"><input id="rememberme" name="rememberme" value="remember" type="checkbox"/>Remember Me</label><br/> 
-        <a href = "#" className = "forgot">Forgot Password?</a>
-      </form>
-    </div>
-    <h2 className = "subtitle">Let's find your next favorite study spot!</h2>
-    <div className="card">
-      <button type = "submit" className = "signBttn">Login</button>
-    </div>
-  </>
-  )
+      <div className="loginInfo">
+        <form action="">
+          <h1 className="loginHeader">Login</h1>
+          <input type="text" placeholder='Username' required className="user"></input><br />
+          <input type="password" placeholder='Password' required className="pass"></input><br /><br />
+          <label className="remember"><input id="rememberme" name="rememberme" value="remember" type="checkbox" />Remember Me</label><br />
+          <a href="#" className="forgot">Forgot Password?</a>
+        </form>
+      </div>
+      <h2 className="subtitle">Let's find your next favorite study spot!</h2>
+      <div className="card">
+        <button type="submit" className="signBttn">Login</button>
+      </div>
+      <div>
+        <p><b>First name: </b> {user ? user.first_name : "First Name"}</p>
+      </div>
+    </>
+  );
+
 }
 
-export default SignIn;
