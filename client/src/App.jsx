@@ -1,12 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
-import HomePage from './features/HomePage/HomePage'; 
-import SignUp from './features/SignUp/SignUp' 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './components/HomePage/HomePage';
+import SignUp from './components/SignUp/SignUp'
 import Header from './shared/Header/Header';
-import SearchFilter from './features/SearchFilter/SearchFilter'
-import Places from './features/Places/Places'
-import Contact from './features/Contact/Contact';
-import SignIn from './features/SignIn/SignIn';
+import SearchFilter from './components/SearchFilter/SearchFilter'
+import Places from './components/Places/Places'
+import Contact from './components/Contact/Contact';
+import SignIn from './components/SignIn/SignIn';
 
 function App() {
   return (
