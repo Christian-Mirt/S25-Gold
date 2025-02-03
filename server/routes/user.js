@@ -19,7 +19,7 @@ user.post("/", (req, res) => {
         });
 });
 
-user.get("/total", (req, res) => {
+user.post("/total", (req, res) => {
     connection.execute(
         "select count(*) as total_users from user_information",
         [],

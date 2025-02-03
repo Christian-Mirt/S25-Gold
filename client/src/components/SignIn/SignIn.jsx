@@ -31,7 +31,7 @@ export default function SignIn() {
 
   const getTotalUsers = async () => {
     const result = await fetch(import.meta.env.VITE_API_KEY + '/user/total', {
-      method: "GET",
+      method: "POST",
       headers: {
         'content-type': 'application/json',
       },
