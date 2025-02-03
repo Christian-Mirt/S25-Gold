@@ -30,7 +30,7 @@ user.post("/total", (req, res) => {
                 res.json({
                     status: 200,
                     message: "Total number of users retrieved successfully",
-                    data: result,
+                    data: result[0].total_users,
                 });
             }
         }
