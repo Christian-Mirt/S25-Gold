@@ -41,8 +41,8 @@ export default function SignIn() {
 
     if (data.status === 200) {
       console.log(data);
-      console.log(data.total_users);
-      setTotalUsers(data.total_users);
+      console.log(data.data);
+      setTotalUsers(data.data);
     } else {
       console.log("Error fetching total users");
     }
