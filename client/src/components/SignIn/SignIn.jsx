@@ -40,8 +40,6 @@ export default function SignIn() {
     const data = await result.json();
 
     if (data.status === 200) {
-      console.log(data);
-      console.log(data.data);
       setTotalUsers(data.data);
     } else {
       console.log("Error fetching total users");
