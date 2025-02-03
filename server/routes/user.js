@@ -19,4 +19,22 @@ user.post("/", (req, res) => {
         });
 });
 
+user.post("/total", (req, res) => {
+    connection.execute(
+        "select count(*) as total_users from user_information",
+        [],
+        function (err, result) {
+            if (err) {
+                res.json(err.message);
+            } else {
+                res.json({
+                    status: 200,
+                    message: "Total number of users retrieved successfully",
+                    data: result[0].total_users,
+                });
+            }
+        }
+    );
+});
+
 export default user;

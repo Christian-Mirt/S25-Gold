@@ -6,6 +6,7 @@ export default function SignIn() {
   const navigate = useNavigate();
   const target_id = 2;
   const [user, setUser] = useState(null);
+  const [totalUsers, setTotalUsers] = useState(0);
 
   const getUser = async () => {
     const formBody = JSON.stringify({ id: target_id });
@@ -28,8 +29,26 @@ export default function SignIn() {
     }
   };
 
+  const getTotalUsers = async () => {
+    const result = await fetch(import.meta.env.VITE_API_KEY + '/user/total', {
+      method: "POST",
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+
+    const data = await result.json();
+
+    if (data.status === 200) {
+      setTotalUsers(data.data);
+    } else {
+      console.log("Error fetching total users");
+    }
+  };
+
   useEffect(() => {
     getUser();
+    getTotalUsers();
   }, []);
 
   return (
@@ -52,6 +71,7 @@ export default function SignIn() {
       </div>
       <div>
         <p><b>First name: </b> {user ? user.first_name : "First Name"}</p>
+        <p><b>Number of users: </b> {totalUsers}</p>
       </div>
     </>
   );
