@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 
 export default function SignIn() {
   const navigate = useNavigate();
-  const target_id = 2;
+  const target_id = 1;
   const [user, setUser] = useState(null);
   const [totalUsers, setTotalUsers] = useState(0);
 
@@ -70,8 +70,8 @@ export default function SignIn() {
         <button type="submit" className="signBttn">Login</button>
       </div>
       <div>
-        <p><b>First name: </b> {user ? user.first_name : "First Name"}</p>
-        <p><b>Number of users: </b> {totalUsers}</p>
+        <p style="color:white"><b>First name: </b> {user ? user.first_name : "First Name"}</p>
+        <p style="color:white"><b>Number of users: </b> {totalUsers}</p>
       </div>
     </>
   );
