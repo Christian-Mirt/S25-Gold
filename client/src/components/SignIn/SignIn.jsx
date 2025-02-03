@@ -70,8 +70,8 @@ export default function SignIn() {
         <button type="submit" className="signBttn">Login</button>
       </div>
       <div>
-        <p style="color:white"><b>First name: </b> {user ? user.first_name : "First Name"}</p>
-        <p style="color:white"><b>Number of users: </b> {totalUsers}</p>
+        <p><b>First name: </b> {user ? user.first_name : "First Name"}</p>
+        <p><b>Number of users: </b> {totalUsers}</p>
       </div>
     </>
   );
