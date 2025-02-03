@@ -5,7 +5,7 @@ function HomePage() {
   const navigate = useNavigate();
 
   return( 
-    <div>
+    <div className = "main">
       <h2 className = "caption">Let&apos;s find your next favorite study spot!</h2>
       <button className="nextBttn">
         <span onClick = {() => {navigate("/signup")}} className="material-symbols-outlined">arrow_forward</span>

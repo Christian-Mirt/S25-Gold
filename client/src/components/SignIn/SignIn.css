@@ -7,8 +7,10 @@
 
   .subtitle
   {
+    position: relative;
     color: white;
-    transform: translate(-470px, -5px);
+    top: -5px;
+    transform: translate(-470px);
   }
   
   .signBttn{

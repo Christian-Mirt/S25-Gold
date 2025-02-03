@@ -1,6 +1,8 @@
 .caption{
   color: white;
-  transform: translate(-460px, -70px);
+  position: relative;
+  left: -460px;
+  top: -70px;
   font-size: 25px;
 }
 
@@ -14,5 +16,7 @@
   border-radius: 50%;
   width: 100px;
   height: 100px;
-  transform: translate(-460px, -20px);
+  position: relative;
+  left: -460px;
+  top: -20px;
 }
