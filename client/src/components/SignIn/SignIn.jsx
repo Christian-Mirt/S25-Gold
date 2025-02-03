@@ -38,11 +38,10 @@ export default function SignIn() {
     });
 
     const data = await result.json();
-    console.log("Total Users API Response:", data);
 
     if (data.status === 200) {
       console.log(data);
-      setTotalUsers(data.total_users);
+      // setTotalUsers(data.total_users);
     } else {
       console.log("Error fetching total users");
     }

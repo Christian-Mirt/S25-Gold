@@ -21,7 +21,7 @@ user.post("/", (req, res) => {
 
 user.post("/total", (req, res) => {
     connection.execute(
-        "select count(*) as total_users from user_information",
+        "select count(*) from user_information",
         [],
         function (err, result) {
             if (err) {
@@ -30,7 +30,7 @@ user.post("/total", (req, res) => {
                 res.json({
                     status: 200,
                     message: "Total number of users retrieved successfully",
-                    total_users: result[0].total_users,
+                    data: result,
                 });
             }
         }
