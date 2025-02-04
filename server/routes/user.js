@@ -54,4 +54,22 @@ user.get("/ping-render", (req, res) => {
     );
 });
 
+user.post("/signUp", (req, res) => {
+    connection.execute(
+        "INSERT INTO user_information (first_name, last_name, email, password) VALUES (?, ?, ?, ?)",
+        [req.body.first_name, req.body.last_name, req.body.email, req.body.password],
+        function (err, result) {
+            if (err) {
+                res.status(500).json({ error: err.message });
+            } else {
+                res.status(201).json({
+                    status: 201,
+                    message: "User signed up successfully",
+                    userId: result.insertId,
+                });
+            }
+        }
+    );
+});
+
 export default user;
