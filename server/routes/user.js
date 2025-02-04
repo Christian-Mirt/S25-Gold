@@ -37,9 +37,9 @@ user.post("/total", (req, res) => {
     );
 });
 
-user.get("/get-total", (req, res) => {
+user.get("/ping-render", (req, res) => {
     connection.execute(
-        "select count(*) as total_users from user_information",
+        "select 1",
         [],
         function (err, result) {
             if (err) {
@@ -47,8 +47,7 @@ user.get("/get-total", (req, res) => {
             } else {
                 res.json({
                     status: 200,
-                    message: "Total number of users retrieved successfully",
-                    data: result[0].total_users,
+                    message: "Successfully pinged render",
                 });
             }
         }
