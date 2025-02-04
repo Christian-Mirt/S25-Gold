@@ -14,7 +14,7 @@ const myLogger = function (req, res, next) {
 app.use(myLogger);
 app.use(bodyParser.json());
 app.use(cors({
-    origin: 'https://productive-places.web.app',
+    origin: '*',
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type']
 }));
