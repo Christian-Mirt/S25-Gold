@@ -21,7 +21,7 @@ function SignUp() {
 
     const handleSubmit = async () => {
         try {
-            const response = await fetch('https://your-backend.com/signUp', {
+            const response = await fetch(import.meta.env.VITE_API_KEY + '/user/signUp', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
