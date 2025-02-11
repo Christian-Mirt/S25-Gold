@@ -72,4 +72,21 @@ user.post("/signUp", (req, res) => {
     );
 });
 
+user.post("/signIn", (req, res) => {
+    connection.execute(
+        "SELECT first_name, password from user_information WHERE first_name = ? AND password = ?",
+        [req.body.first_name, req.body.password],
+        function (err, result) {
+            if (err) {
+                res.json(err.message);
+            } else {
+                res.json({
+                    status: 200,
+                    message: "Successfully logged in",
+                });
+            }
+        }
+    );
+});
+
 export default user;
