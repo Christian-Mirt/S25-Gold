@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 function SearchFilter() {
   const navigate = useNavigate();
 
+  const searchPlace = () =>{
+    navigate('/places');
+  }
+
   return( 
     <div>
       <input type="text" placeholder="Search for a place..." className = "bigSearch"></input>
@@ -32,7 +36,7 @@ function SearchFilter() {
         <option value="" selected disabled>Food & Drink</option>
         <option value="1">Option 1</option>
       </select>
-      <button className='searchButton'>Search</button>
+      <button className='searchButton' onClick={searchPlace}>Search</button>
     </div>
   )
 }
