@@ -14,7 +14,11 @@ function SearchFilter() {
       <h1 className='browseHeader'>Or browse using the filters below</h1>
       <select type="text" placeholder="Rating" className = "rating">
         <option value="" selected disabled>Rating</option>
-        <option value="1">Option 1</option>
+        <option value="5">5</option>
+        <option value="4">4</option>
+        <option value="3">3</option>
+        <option value="2">2</option>
+        <option value="1">1</option>
       </select>
       <select type="text" placeholder="Hours" className = "hours">
         <option value="" selected disabled>Hours</option>
@@ -22,7 +26,11 @@ function SearchFilter() {
       </select>
       <select type="text" placeholder="Wifi" className = "wifi">
         <option value="" selected disabled>Wifi</option>
-        <option value="1">Option 1</option>
+        <option value="excellent">Excellent</option>
+        <option value="good">Good</option>
+        <option value="ok">Okay</option>
+        <option value="slow">Slow</option>
+        <option value="really_slow">Really Slow</option>
       </select>
       <select type="text" placeholder="Location" className = "loc">
         <option value="" selected disabled>Location</option>

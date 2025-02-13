@@ -23,13 +23,13 @@ export default function SignIn() {
       const data = await response.json();
 
       if (response.ok) {
-          alert('Sign-up successful! Redirecting...');
+          alert('Login successful! Redirecting...');
           navigate('/searchfilter');
       } else {
-          alert(`Error: ${data.error || 'Sign-up failed'}`);
+          alert(`Error: ${data.error || 'Login failed'}`);
       }
   } catch (error) {
-      console.error('Error signing up:', error);
+      console.error('Error logging in up:', error);
       alert('Something went wrong. Please try again.');
   }
 };
