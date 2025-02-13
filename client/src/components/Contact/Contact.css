@@ -1,0 +1,45 @@
+h1, b, p{
+    color: white;
+}
+
+.contactCatalog{
+    width: 420px;
+    background-color:rgba(0,0,0,0.4);
+    transform: translate(-460px, -30px);
+  }
+
+  .favs{
+    border-radius: 10px;
+    width: 80%;
+    font-size: 25px;
+    margin: 20px 0;
+    transform: translateY(-10px);
+    padding: 5px;
+  }
+
+  .reviews{
+    border-radius: 10px;
+    width: 80%;
+    font-size: 25px;
+    transform: translateY(-20px);
+    margin: 20px 0;
+    padding: 5px;
+  }
+
+  .prefs{
+    border-radius: 10px;
+    width: 80%;
+    font-size: 25px;
+    transform: translateY(-20px);
+    margin: 20px 0;
+    padding: 5px;
+  }
+
+  .profilePhoto{
+    border-radius: 10px;
+    width: 80%;
+    font-size: 25px;
+    transform: translateY(-20px);
+    margin: 20px 0;
+    padding: 5px;
+  }

@@ -53,6 +53,7 @@ function Places() {
       <h1>Hello</h1>
       <p><b>Number of places: </b> {totalUsers}</p>
       <p><b>Places: </b> {allPlaces ? allPlaces.name : "Places"}</p>
+      <p><b>Ratings: </b> {allPlaces ? allPlaces.overall_rating : "Rating"}</p>
     </div>
   )
 }
