@@ -83,6 +83,7 @@ user.post("/signIn", (req, res) => {
                 res.json({
                     status: 200,
                     message: "Successfully logged in",
+                    data: result,
                 });
             }
         }

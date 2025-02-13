@@ -7,24 +7,37 @@ export default function SignIn() {
   const target_id = 1;
   const [user, setUser] = useState(null);
   const [totalUsers, setTotalUsers] = useState(0);
+  const [firstName, setFirstName] = useState('');
+  const [password, setPassword] = useState('');
 
-  const [formData, setFormData] = useState({
-    first_name: '',
-    password: '',
-});
+  const handleSubmit = async (e) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_KEY + '/user/signIn', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({first_name: firstName, password: password})
+      });
 
-const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-        ...formData,
-        [name]: value,
-    });
+      const data = await response.json();
+
+      if (response.ok) {
+          alert('Sign-up successful! Redirecting...');
+          navigate('/searchfilter');
+      } else {
+          alert(`Error: ${data.error || 'Sign-up failed'}`);
+      }
+  } catch (error) {
+      console.error('Error signing up:', error);
+      alert('Something went wrong. Please try again.');
+  }
 };
 
   const getUser = async () => {
     const formBody = JSON.stringify({ id: target_id });
 
-    const login = await fetch(import.meta.env.VITE_API_KEY + '/user/signIn', {
+    const login = await fetch(import.meta.env.VITE_API_KEY + '/user/', {
       method: "POST",
       body: formBody,
       headers: {
@@ -64,35 +77,13 @@ const handleChange = (e) => {
     getTotalUsers();
   }, []);
 
-  const handleLogin = async () => {
-    try {
-        const response = await fetch('user/signIn', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        });
-        const data = await response.json();
-        if (response.ok) {
-            alert('Login successful! Redirecting...');
-            navigate('/searchfilter');
-        } else {
-            alert(`Error: ${data.error || 'Login failed'}`);
-        }
-    } catch (error) {
-        console.error('Error signing up:', error);
-        alert('Something went wrong. Please try again.');
-    }
-};
-
   return (
     <>
       <div className="loginInfo">
         <form action="">
           <h1 className="loginHeader">Login</h1>
-          <input type="text" name="first_name" placeholder="Username" required className="user" value={formData.first_name} onChange={handleChange}/><br />
-          <input type="password" name="password" placeholder="Password" required className="pass" value={formData.password} onChange={handleChange}/><br /><br />
+          <input type="text" name="first_name" placeholder="Username" required className="user" value={firstName} onChange={(e) => setFirstName(e.target.value)}/><br />
+          <input type="password" name="password" placeholder="Password" required className="pass" value={password} onChange={(e) => setPassword(e.target.value)}/><br /><br />
           <label className="remember">
             <input id="rememberme" name="rememberme" value="remember" type="checkbox" />
             Remember Me
@@ -102,7 +93,7 @@ const handleChange = (e) => {
       </div>
       <h2 className="subtitle">Let's find your next favorite study spot!</h2>
       <div className="card">
-        <button type="submit" className="signBttn" onClick={handleLogin}>Login</button>
+        <button type="submit" className="signBttn" onClick={handleSubmit}>Login</button>
       </div>
       <div>
         <p><b>First name: </b> {user ? user.first_name : "First Name"}</p>
