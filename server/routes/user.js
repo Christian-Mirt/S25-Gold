@@ -90,7 +90,7 @@ user.post("/signIn", (req, res) => {
     );
 });
 
-user.post("/tps", (req, res) => {
+user.get("/tps", (req, res) => {
     connection.execute(
         "select count(*) as tp from places",
         [],
