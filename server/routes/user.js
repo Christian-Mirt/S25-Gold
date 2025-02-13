@@ -108,4 +108,22 @@ user.get("/tps", (req, res) => {
     );
 });
 
+user.get("/catalogs", (req, res) => {
+    connection.execute(
+        "SELECT name, overall_rating FROM places",
+        [],
+        function (err, result) {
+            if (err) {
+                res.json(err.message);
+            } else {
+                res.json({
+                    status: 200,
+                    message: "Places retrieved successfully",
+                    data: result,
+                });
+            }
+        }
+    );
+});
+
 export default user;
