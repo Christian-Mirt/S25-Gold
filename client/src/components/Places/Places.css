@@ -12,4 +12,5 @@ ul{
     transform: translate(-460px, -30px);
     overflow-y: scroll;
     overflow-x: hidden;
+    max-height: 60vh;
   }
