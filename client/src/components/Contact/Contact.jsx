@@ -6,10 +6,10 @@ function Contact() {
 
   return( 
     <div className="contactCatalog">
-      <h1 className = "profileTitle">Your Profile</h1>
-      <a href className='favs'>Your favorites</a><br/>
-      <a href className='reviews'>Your Reviews</a><br/>
-      <a href className='prefs'>Your Preferences</a><br/>
+      <h1 className = "profileTitle"><div class="dot"></div>Your Profile</h1>
+      <a href className='favs'>Your favorites</a><br/><br/>
+      <a href className='reviews'>Your Reviews</a><br/><br/>
+      <a href className='prefs'>Your Preferences</a><br/><br/>
       <a href className='profilePhoto'>Upload a Profile Photo</a>
     </div>
   )

@@ -60,7 +60,7 @@ function Places() {
       <ul>
         {allPlaces.map((place, index) => (
           <div key={index}>
-            <p> {place.name} &nbsp; {place.overall_rating}</p>
+            <p> {place.name}: &nbsp; {place.overall_rating}</p>
             <hr width="100%" size="2" color="white" noshade></hr>
           </div>
         ))}
