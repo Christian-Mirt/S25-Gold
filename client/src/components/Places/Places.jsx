@@ -55,14 +55,18 @@ function Places() {
     <div className="placesCatalog">
       <h1>Places Catalog</h1>
       <p><b>Number of places: </b> {totalUsers}</p>
-      <div>
-    {allPlaces.map((place) => (
-      <div>
-        <p>{place.name}</p>
-        <p>{place.overall_rating}</p>
-      </div>
-    ))}
-  </div>
+      {allPlaces ? (
+      <ul>
+        {allPlaces.map((place, index) => (
+          <li key={index}>
+            <p><b>Name:</b> {place.name}</p>
+            <p><b>Ratings:</b> {place.overall_rating}</p>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p>No places available</p>
+    )}
     </div>
   )
 }
