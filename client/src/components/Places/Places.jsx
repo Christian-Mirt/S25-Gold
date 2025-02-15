@@ -25,7 +25,9 @@ function Places() {
      };
 
      const getPlaces = async () => {
-  
+      const url = import.meta.env.VITE_API_KEY + '/user/catalogs';
+      console.log(url);
+
       const response = await fetch(import.meta.env.VITE_API_KEY + '/user/catalogs', {
         method: "GET",
         headers: {
@@ -48,12 +50,19 @@ function Places() {
        getTotalUsers();
      }, []);
 
+  let ratingNum = 0;
   return( 
     <div className="placesCatalog">
-      <h1>Hello</h1>
+      <h1>Places Catalog</h1>
       <p><b>Number of places: </b> {totalUsers}</p>
-      <p><b>Places: </b> {allPlaces ? allPlaces.name : "Places"}</p>
-      <p><b>Ratings: </b> {allPlaces ? allPlaces.overall_rating : "Rating"}</p>
+      <div>
+    {allPlaces.map((place) => (
+      <div>
+        <p>{place.name}</p>
+        <p>{place.overall_rating}</p>
+      </div>
+    ))}
+  </div>
     </div>
   )
 }
