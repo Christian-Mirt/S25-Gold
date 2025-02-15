@@ -55,13 +55,14 @@ function Places() {
     <div className="placesCatalog">
       <h1>Places Catalog</h1>
       <p><b>Number of places: </b> {totalUsers}</p>
+      <hr width="100%" size="2" color="white" noshade></hr>
       {allPlaces ? (
       <ul>
         {allPlaces.map((place, index) => (
-          <li key={index}>
-            <p><b>Name:</b> {place.name}</p>
-            <p><b>Ratings:</b> {place.overall_rating}</p>
-          </li>
+          <div key={index}>
+            <p> {place.name} &nbsp; {place.overall_rating}</p>
+            <hr width="100%" size="2" color="white" noshade></hr>
+          </div>
         ))}
       </ul>
     ) : (

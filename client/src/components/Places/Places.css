@@ -2,8 +2,14 @@ h1, b, p, a{
     color: white;
 }
 
+ul{
+    padding-left: 0;
+}
+
 .placesCatalog{
     width: 420px;
     background-color:rgba(0,0,0,0.4);
     transform: translate(-460px, -30px);
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
