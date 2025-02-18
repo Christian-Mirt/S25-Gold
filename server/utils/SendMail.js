@@ -14,7 +14,7 @@ export function SendMail(email, emailSubject, emailBody) {
     })
 
     const mailOption = {
-        from: process.env.SMTP_EMAIl,
+        from: process.env.SMTP_EMAIL,
         to: email,
         subject: emailSubject,
         html: emailBody,
