@@ -45,18 +45,22 @@ function SignUp() {
 
     return (
         <>
-            <div className="loginInfo">
-                <form id="signUpForm">
-                    <h1 className="signHeader">Sign Up</h1>
-                    <input type="text" name="first_name" placeholder="First Name" required className="user" value={formData.first_name} onChange={handleChange} /><br />
-                    <input type="text" name="last_name" placeholder="Last Name" required className="user" value={formData.last_name} onChange={handleChange} /><br />
-                    <input type="email" name="email" placeholder="Email" required className="user" value={formData.email} onChange={handleChange} /><br />
-                    <input type="password" name="password" placeholder="Password" required className="pass" value={formData.password} onChange={handleChange} /><br /><br />
-                </form>
-            </div>
-            <h2 className="subtitle">Let's find your next favorite study spot!</h2>
-            <div className="card">
-                <button onClick={handleSubmit} className="signBttn">Sign Up</button>
+            <div className='center-vertically'>
+                <div className='center-horizontally'>
+                    <div className="loginInfo">
+                        <form id="signUpForm">
+                            <h1 className="signHeader">Sign Up</h1>
+                            <input type="text" name="first_name" placeholder="First Name" required className="user" value={formData.first_name} onChange={handleChange} /><br />
+                            <input type="text" name="last_name" placeholder="Last Name" required className="user" value={formData.last_name} onChange={handleChange} /><br />
+                            <input type="email" name="email" placeholder="Email" required className="user" value={formData.email} onChange={handleChange} /><br />
+                            <input type="password" name="password" placeholder="Password" required className="pass" value={formData.password} onChange={handleChange} /><br /><br />
+                        </form>
+                    </div>
+                    <h2 className="subtitle">Let's find your next favorite study spot!</h2>
+                    <div className="card">
+                        <button onClick={handleSubmit} className="signBttn">Sign Up</button>
+                    </div>
+                </div>
             </div>
         </>
     );
