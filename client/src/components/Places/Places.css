@@ -49,7 +49,11 @@ tbody tr {
 }
 
     tbody tr:hover {
-        background-color: rgba(208, 208, 208, 0.4);
+        background-color: rgba(208, 208, 208, 0.4) !important;
+    }
+
+    tbody tr.selected {
+        background-color: rgba(113, 113, 113, 0.4);
     }
 
 .star-rating {
@@ -79,7 +83,7 @@ tbody tr {
         margin-right: 3px; /* Small spacing */
     }
 
-@keyframes slideRefresh {
+@keyframes slideRefresh { /* This is just for when the review update */
     0% {
         opacity: 0;
         transform: translateY(10px);

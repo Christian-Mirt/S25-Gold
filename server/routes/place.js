@@ -39,7 +39,7 @@ place.get("/catalogs", (req, res) => {
 });
 
 place.get("/reviews", (req, res) => {
-    const { place_id } = req.query; // Extract data from query parameters
+    const { place_id } = req.query; // place_id is in url parameters
 
     connection.execute(
         "SELECT r.*, u.first_name, u.last_name FROM reviews r LEFT JOIN user_information u ON r.user_id = u.user_id WHERE place_id = ?",

@@ -20,7 +20,7 @@
 
 .center-vertically {
   display: flex;
-  height: calc(100vh - 110px);
+  height: calc(100vh - 110px); /* Sets the height of the page so it knows where center is */
   align-items: center;  /* Centers the inner div vertically */
   justify-content: center; /* Centers the inner div horizontally */
 }
@@ -43,10 +43,6 @@ a:hover {
 
 body {
   margin: 0;
-  /* display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh; */
 }
 
 h1 {

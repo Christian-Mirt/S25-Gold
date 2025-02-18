@@ -95,7 +95,7 @@ function Places() {
             </thead>
             <tbody>
               {allPlaces.map((place, index) => (
-                <tr key={index} onClick={() => selectPlace(place)}>
+                <tr key={index} onClick={() => selectPlace(place)} className={selectedPlace?.place_id === place.place_id ? "selected" : ""}>
                   <div className="star-rating">
                     <div className="stars">
                       {[...Array(5)].map((_, i) => (
@@ -140,6 +140,7 @@ function Places() {
                   </div>
                 </div>
                 <h3>{review.comment}</h3>
+                <hr />
               </div>
             ))}
           </div>
