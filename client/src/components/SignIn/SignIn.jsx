@@ -9,12 +9,6 @@ export default function SignIn() {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [password, setPassword] = useState('');
 
-  function handleInputChange(identifier, value) {
-    if (identifier === "email") {
-      setEnteredEmail(value);
-    }
-  }
-
   const handleSubmit = async (e) => {
     try {
       const response = await fetch(import.meta.env.VITE_API_KEY + '/user/signIn', {
@@ -60,23 +54,6 @@ export default function SignIn() {
     }
   };
 
-  const getTotalUsers = async () => {
-    const result = await fetch(import.meta.env.VITE_API_KEY + '/user/total', {
-      method: "POST",
-      headers: {
-        'content-type': 'application/json',
-      },
-    });
-
-    const data = await result.json();
-
-    if (data.status === 200) {
-      setTotalUsers(data.data);
-    } else {
-      console.log("Error fetching total users");
-    }
-  };
-
   const handleForgotPassword = async (event) => {
     event.preventDefault();
 
@@ -110,7 +87,6 @@ export default function SignIn() {
 
   useEffect(() => {
     getUser();
-    getTotalUsers();
   }, []);
 
   return (
@@ -118,7 +94,7 @@ export default function SignIn() {
       <div className="loginInfo">
         <form action="">
           <h1 className="loginHeader">Login</h1>
-          <input type="email" name="email" placeholder="Email address" required className="email" onChange={(event) => handleInputChange("enteredEmail", event.target.value)} /><br />
+          <input type="email" name="email" placeholder="Email address" required className="email" value={enteredEmail} onChange={(e) => setEnteredEmail(e.target.value)} /><br />
           <input type="password" name="password" placeholder="Password" required className="pass" value={password} onChange={(e) => setPassword(e.target.value)} /><br /><br />
           <label className="remember">
             <input id="rememberme" name="rememberme" value="remember" type="checkbox" />
