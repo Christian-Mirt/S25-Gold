@@ -46,7 +46,7 @@ place.get("/reviews", (req, res) => {
         [place_id],
         function (err, result) {
             if (err) {
-                res.json(err.message);
+                res.json(err.message + 'placeId = ' + place_id);
             } else {
                 res.json({
                     status: 200,
