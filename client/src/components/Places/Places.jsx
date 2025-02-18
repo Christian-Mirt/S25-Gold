@@ -52,13 +52,9 @@ function Places() {
       const url = import.meta.env.VITE_API_KEY + '/place/reviews';
       console.log(url);
 
-      const formBody = JSON.stringify({
-        id: placeId,
-      })
-
-      const response = await fetch(url, {
+      // Get requests can't have a body, so parameters must be sent in url
+      const response = await fetch(url + '?key=' + placeId, {
         method: "GET",
-        body: formBody,
         headers: {
           'content-type': 'application/json',
         },

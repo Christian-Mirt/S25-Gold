@@ -39,9 +39,11 @@ place.get("/catalogs", (req, res) => {
 });
 
 place.get("/reviews", (req, res) => {
+    const { place_id } = req.query; // Extract data from query parameters
+
     connection.execute(
         "SELECT * FROM reviews WHERE place_id = ?",
-        [req.body.id],
+        [place_id],
         function (err, result) {
             if (err) {
                 res.json(err.message);
