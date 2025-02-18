@@ -13,15 +13,17 @@ h1, h4, b, p, a{
     flex: 1;
     background-color:rgba(0,0,0,0.4);
     color:white;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
-    max-height: 60vh;
+    height: calc(100vh - 100px);
     text-align: center;
 }
 
 .place-details {
     flex: 1;
     background-color: rgba(0, 0, 0, 0.841);
+    overflow-y: auto;
+    height: calc(100vh - 200px);
     padding: 50px;
 }
 

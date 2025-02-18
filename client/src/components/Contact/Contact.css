@@ -5,6 +5,7 @@ h1, b, p{
 .contactCatalog{
     width: 420px;
     background-color:rgba(0,0,0,0.4);
+    margin-left: 5%;
   }
 
   .favs{

@@ -18,6 +18,20 @@
   padding: 10px;
 }
 
+.center-vertically {
+  display: flex;
+  height: calc(100vh - 110px);
+  align-items: center;  /* Centers the inner div vertically */
+  justify-content: center; /* Centers the inner div horizontally */
+}
+
+.center-horizontally {
+  display: flex;
+  flex-direction: column; /* Keeps items stacked */
+  align-items: center; /* Centers items horizontally */
+  text-align: center; /* Ensures text stays centered */
+}
+
 a {
   font-weight: 500;
   color: #646cff;

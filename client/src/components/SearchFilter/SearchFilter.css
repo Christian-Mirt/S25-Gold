@@ -1,19 +1,12 @@
 .bigSearch{
     width: 500px;
     padding: 15px;
-    top: 120px;
-    left: 440px;
-    position: relative;
     font-size: large;
 }
 
 .browseHeader{
     color: white;
     font-size: 40px;
-    top: 120px;
-    left: 370px;
-    position: relative;
-    max-width: 35%;
     background-color:rgba(0,0,0,0.4);
     padding: 20px 0px;
     border-radius: 30px;
@@ -24,10 +17,8 @@
     color: white;
     padding: 10px;
     width: 450px;
-    position: relative;
-    left: 470px;
-    top: 180px;
     font-size: large;
+    margin-bottom: 10px;
 }
 
 .hours{
@@ -35,10 +26,8 @@
     color: white; 
     padding: 10px;
     width: 450px;
-    position: relative;
     font-size: large;
-    left: 20px;
-    top: 130px;
+    margin-bottom: 10px;
 }
 
 .wifi{
@@ -46,10 +35,8 @@
     color: white; 
     padding: 10px;
     width: 450px;
-    position: relative;
     font-size: large;
-    left: -430px;
-    top: 230px;
+    margin-bottom: 10px;
 }
 
 .loc{
@@ -57,10 +44,8 @@
     color: white; 
     padding: 10px;
     width: 450px;
-    position: relative;
     font-size: large;
-    left: -880px;
-    top: 280px;
+    margin-bottom: 10px;
 }
 
 .pop{
@@ -68,10 +53,8 @@
     color: white; 
     padding: 10px;
     width: 450px;
-    position: relative;
     font-size: large; 
-    left: 470px;
-    top: 290px;
+    margin-bottom: 10px;
 }
 
 .food{
@@ -79,18 +62,13 @@
     color: white; 
     padding: 10px;
     width: 450px;
-    position: relative;
     font-size: large;
-    left: 20px;
-    top: 345px;
+    margin-bottom: 10px;    
 }
 
 .searchButton{
     background-color: white;
     color: black;
-    position: relative;
-    top: 400px;
-    left: -250px;
 }
 
 .rating::placeholder, .hours::placeholder, .wifi::placeholder, 

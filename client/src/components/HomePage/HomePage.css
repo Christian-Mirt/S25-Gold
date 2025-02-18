@@ -1,8 +1,5 @@
 .caption{
   color: white;
-  position: relative;
-  left: 300px;
-  top: 370px;
   font-size: 25px;
 }
 
@@ -16,7 +13,4 @@
   border-radius: 50%;
   width: 100px;
   height: 100px;
-  position: relative;
-  left: 460px;
-  top: 360px;
 }
