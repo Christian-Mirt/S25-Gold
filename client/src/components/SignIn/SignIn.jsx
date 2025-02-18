@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 
 export default function SignIn() {
   const navigate = useNavigate();
-  const target_id = 1;
   const [user, setUser] = useState(null);
   const [enteredEmail, setEnteredEmail] = useState("");
   const [password, setPassword] = useState('');
@@ -30,27 +29,6 @@ export default function SignIn() {
     } catch (error) {
       console.error('Error logging in up:', error);
       alert('Something went wrong. Please try again.');
-    }
-  };
-
-  const getUser = async () => {
-    const formBody = JSON.stringify({ id: target_id });
-
-    const login = await fetch(import.meta.env.VITE_API_KEY + '/user/', {
-      method: "POST",
-      body: formBody,
-      headers: {
-        'content-type': 'application/json',
-      },
-    });
-
-    const data = await result.json();
-
-    if (data.status === 200) {
-      console.log(data);
-      setUser(data.data[0]);
-    } else {
-      console.log("Error fetching user");
     }
   };
 
