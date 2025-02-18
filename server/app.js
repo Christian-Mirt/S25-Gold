@@ -2,6 +2,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
 import user from "./routes/user.js";
+import place from "./routes/place.js"
 const app = express();
 const port = 8080;
 
@@ -20,6 +21,8 @@ app.use(cors({
 }));
 
 app.use('/user', user);
+
+app.use('/place', place);
 
 app.listen(port, () => {
     console.log(`Server is running at port ${port}`);

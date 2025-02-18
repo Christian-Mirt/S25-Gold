@@ -8,7 +8,7 @@ function Places() {
   const [allPlaces, setPlaces] = useState(null);
 
      const getTotalUsers = async () => {
-       const result = await fetch(import.meta.env.VITE_API_KEY + '/user/tps', {
+       const result = await fetch(import.meta.env.VITE_API_KEY + '/place/tps', {
          method: "POST",
          headers: {
            'content-type': 'application/json',
@@ -25,10 +25,10 @@ function Places() {
      };
 
      const getPlaces = async () => {
-      const url = import.meta.env.VITE_API_KEY + '/user/catalogs';
+      const url = import.meta.env.VITE_API_KEY + '/place/catalogs';
       console.log(url);
 
-      const response = await fetch(import.meta.env.VITE_API_KEY + '/user/catalogs', {
+      const response = await fetch(import.meta.env.VITE_API_KEY + '/place/catalogs', {
         method: "GET",
         headers: {
           'content-type': 'application/json',
