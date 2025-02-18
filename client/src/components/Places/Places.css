@@ -14,7 +14,7 @@ h1, h4, b, p, a{
     background-color:rgba(0,0,0,0.4);
     color:white;
     overflow-y: scroll;
-    overflow-x: hidden;
+    overflow-x: scroll;
     max-height: 60vh;
     text-align: center;
 }
