@@ -1,19 +1,25 @@
 import './SearchFilter.css'
 import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 
 function SearchFilter() {
   const navigate = useNavigate();
+  const [rating, setRating] = useState('');
 
   const searchPlace = () =>{
-    navigate('/places');
+    navigate(`/places?rating=${rating}`);
   }
+
+  const handleRatingChange = (event) => {
+    setRating(event.target.value);
+  };
 
   return( 
     <div className='center-vertically'>
       <div className='center-horizontally'>
         <input type="text" placeholder="Search for a place..." className = "bigSearch"></input>
         <h1 className='browseHeader'>Or browse using the filters below</h1>
-        <select type="text" placeholder="Rating" className = "rating">
+        <select type="text" placeholder="Rating" className = "rating" value={rating} onChange={handleRatingChange}>
           <option value="" selected disabled>Rating</option>
           <option value="5">5</option>
           <option value="4">4</option>

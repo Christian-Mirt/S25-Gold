@@ -1,14 +1,19 @@
 import './Places.css';
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function Places() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const ratingParam = queryParams.get('rating');
+
   const [totalPlaces, setTotalPlaces] = useState(0);
   const [allPlaces, setPlaces] = useState(null);
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [selectedPlaceDetails, setSelectedPlaceDetails] = useState(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [filteredPlaces, setFilteredPlaces] = useState([]);
 
   const getTotalPlaces = async () => {
     const result = await fetch(import.meta.env.VITE_API_KEY + '/place/tps', {
@@ -40,6 +45,7 @@ function Places() {
       setPlaces(data.data);
       // selects the first place in the list
       selectPlace(data.data[0]);
+      filterPlaces(data.data, ratingParam);
     } else {
       console.log("Error fetching places");
     }
@@ -71,10 +77,19 @@ function Places() {
     }
   };
 
+  const filterPlaces = (places, rating) => {
+    if (rating) {
+      const filtered = places.filter((place) => place.overall_rating >= parseFloat(rating));
+      setFilteredPlaces(filtered);
+    } else {
+      setFilteredPlaces(places);
+    }
+  };
+
   useEffect(() => {
     getPlaces();
     getTotalPlaces();
-  }, []);
+  }, [ratingParam]);
 
   return (
     <div className='page-container'>
@@ -83,7 +98,7 @@ function Places() {
         <h1>Places Catalog</h1>
         <p><b>Number of places: </b> {totalPlaces}</p>
         <hr width="100%" size="2" color="white" noshade></hr>
-        {allPlaces ? (
+        {filteredPlaces.length > 0 ? (
           <table>
             <thead>
               <tr>
@@ -94,7 +109,7 @@ function Places() {
               </tr>
             </thead>
             <tbody>
-              {allPlaces.map((place, index) => (
+              {filteredPlaces.map((place, index) => (
                 <tr key={index} onClick={() => selectPlace(place)} className={selectedPlace?.place_id === place.place_id ? "selected" : ""}>
                   <div className="star-rating">
                     <div className="stars">
