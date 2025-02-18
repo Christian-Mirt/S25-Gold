@@ -1,5 +1,7 @@
 import { Router } from "express";
 import { connection } from "../database/database.js";
+import { ComparePasword, HashedPassword, generateRandomPassword } from "../utils/GeneratePassword.js";
+import { SendMail } from "../utils/SendMail.js";
 const user = Router();
 
 user.post("/", (req, res) => {
@@ -74,8 +76,8 @@ user.post("/signUp", (req, res) => {
 
 user.post("/signIn", (req, res) => {
     connection.execute(
-        "SELECT first_name, password from user_information WHERE first_name = ? AND password = ?",
-        [req.body.first_name, req.body.password],
+        "SELECT email, password from user_information WHERE email = ? AND password = ?",
+        [req.body.email, req.body.password],
         function (err, result) {
             if (err) {
                 res.json(err.message);
@@ -85,6 +87,36 @@ user.post("/signIn", (req, res) => {
                     message: "Successfully logged in",
                     data: result,
                 });
+            }
+        }
+    );
+});
+
+user.put("/reset-password", (req, res) => {
+    const tempKey = generateRandomPassword();
+
+    connection.execute(
+        "update user_information set temp_key=? where email=?",
+        [tempKey, req.body.email],
+        function (err, result) {
+            if (err) {
+                res.json(err.message);
+            } else {
+                if (result.affectedRows > 0) {
+                    const msg = "Thanks for using Productive Places!<br><br>To access your account, please login with this temporary key:<br><br>" + tempKey + "<br><br>Productively,<br>The Productive Places Support Team<br>";
+                    SendMail(req.body.email, "Temporary Password", msg);
+                    res.json({
+                        status: 200,
+                        message: "Updated login key, email sent",
+                        data: result,
+                    });
+                } else {
+                    res.json({
+                        status: 401,
+                        message: "No accounts found",
+                        data: result,
+                    });
+                }
             }
         }
     );

@@ -1,65 +1,64 @@
-  .subtitle
-  {
+  .subtitle {
     position: relative;
     color: white;
     top: -5px;
   }
-  
-  .signBttn{
+
+  .signBttn {
     background-color: white;
     color: black;
   }
-  
-  .loginInfo{
+
+  .loginInfo {
     width: 420px;
-    background-color:rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
     text-align: center;
   }
-  
-  .loginHeader{
+
+  .loginHeader {
     color: white;
     font-size: 45px;
     padding: 30px 40px;
   }
-  
-  .user{
+
+  .user {
     border-radius: 10px;
     width: 80%;
     font-size: 25px;
     margin: 20px 0;
     padding: 5px;
   }
-  
-  .user::placeholder, .pass::placeholder{
+
+  .user::placeholder,
+  .pass::placeholder {
     color: black;
   }
-  
-  .pass{
+
+  .pass {
     border-radius: 10px;
     width: 80%;
     font-size: 25px;
     margin: 20px 0;
     padding: 5px;
   }
-  
-  .forgot{
+
+  .forgot {
     color: white;
     position: relative;
-    top: -25px; 
+    top: -25px;
     left: 3px;
   }
-  
-  .remember{
+
+  .remember {
     color: white;
     position: relative;
-    top: -25px; 
+    top: -25px;
   }
-  
+
   .card {
     padding: 2em;
   }
 
-  .profileTitle{
+  .profileTitle {
     transform: translateY(10px);
   }
-  

@@ -16,7 +16,7 @@ app.use(myLogger);
 app.use(bodyParser.json());
 app.use(cors({
     origin: '*',
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'PUT'],
     allowedHeaders: ['Content-Type']
 }));
 

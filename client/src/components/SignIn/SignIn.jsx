@@ -4,100 +4,92 @@ import React, { useState, useEffect } from "react";
 
 export default function SignIn() {
   const navigate = useNavigate();
-  const target_id = 1;
   const [user, setUser] = useState(null);
-  const [totalUsers, setTotalUsers] = useState(0);
-  const [firstName, setFirstName] = useState('');
+  const [enteredEmail, setEnteredEmail] = useState("");
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formBody = JSON.stringify({
+      email: enteredEmail,
+      password: password
+    })
+
     try {
       const response = await fetch(import.meta.env.VITE_API_KEY + '/user/signIn', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({first_name: firstName, password: password})
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: formBody,
       });
 
       const data = await response.json();
 
       if (response.ok) {
-          alert('Login successful! Redirecting...');
-          navigate('/searchfilter');
+        alert('Login successful! Redirecting...');
+        navigate('/searchfilter');
       } else {
-          alert(`Error: ${data.error || 'Login failed'}`);
+        alert(`Error: ${data.error || 'Login failed'}`);
       }
-  } catch (error) {
+    } catch (error) {
       console.error('Error logging in up:', error);
       alert('Something went wrong. Please try again.');
-  }
-};
+    }
+  };
 
-  const getUser = async () => {
-    const formBody = JSON.stringify({ id: target_id });
+  const handleForgotPassword = async (event) => {
+    event.preventDefault();
 
-    const login = await fetch(import.meta.env.VITE_API_KEY + '/user/', {
-      method: "POST",
+    if (enteredEmail == "") {
+      alert("Please enter a valid email address");
+      return;
+    }
+
+    const formBody = JSON.stringify({
+      email: enteredEmail,
+    })
+
+    const result = await fetch(import.meta.env.VITE_API_KEY + '/user/reset-password', {
+      method: "PUT",
       body: formBody,
       headers: {
-        'content-type': 'application/json',
-      },
+        'content-type': 'application/json'
+      }
     });
 
     const data = await result.json();
 
-    if (data.status === 200) {
-      console.log(data);
-      setUser(data.data[0]);
+    console.log(data);
+
+    if (data.status == 200) {
+      alert("Please check your email!");
     } else {
-      console.log("Error fetching user");
+      alert("No accounts found");
     }
   };
 
-  const getTotalUsers = async () => {
-    const result = await fetch(import.meta.env.VITE_API_KEY + '/user/total', {
-      method: "POST",
-      headers: {
-        'content-type': 'application/json',
-      },
-    });
-
-    const data = await result.json();
-
-    if (data.status === 200) {
-      setTotalUsers(data.data);
-    } else {
-      console.log("Error fetching total users");
-    }
-  };
-
-  useEffect(() => {
-    getUser();
-    getTotalUsers();
-  }, []);
+  // useEffect(() => {
+  // }, []);
 
   return (
     <>
       <div className="loginInfo">
         <form action="">
           <h1 className="loginHeader">Login</h1>
-          <input type="text" name="first_name" placeholder="Username" required className="user" value={firstName} onChange={(e) => setFirstName(e.target.value)}/><br />
-          <input type="password" name="password" placeholder="Password" required className="pass" value={password} onChange={(e) => setPassword(e.target.value)}/><br /><br />
+          <input type="email" name="email" placeholder="Email address" required className="user" value={enteredEmail} onChange={(e) => setEnteredEmail(e.target.value)} /><br />
+          <input type="password" name="password" placeholder="Password" required className="pass" value={password} onChange={(e) => setPassword(e.target.value)} /><br /><br />
           <label className="remember">
             <input id="rememberme" name="rememberme" value="remember" type="checkbox" />
             Remember Me
           </label><br />
-          <a href="#" className="forgot">Forgot Password?</a>
+          <a href="#" className="forgot" onClick={handleForgotPassword}>Forgot Password?</a>
         </form>
       </div>
       <h2 className="subtitle">Let's find your next favorite study spot!</h2>
       <div className="card">
         <button type="submit" className="signBttn" onClick={handleSubmit}>Login</button>
-      </div>
-      <div>
-        <p><b>First name: </b> {user ? user.first_name : "First Name"}</p>
-        <p><b>Number of users: </b> {totalUsers}</p>
       </div>
     </>
   );
