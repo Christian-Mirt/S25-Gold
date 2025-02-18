@@ -78,7 +78,7 @@ export default function SignIn() {
       <div className="loginInfo">
         <form action="">
           <h1 className="loginHeader">Login</h1>
-          <input type="email" name="email" placeholder="Email address" required className="email" value={enteredEmail} onChange={(e) => setEnteredEmail(e.target.value)} /><br />
+          <input type="email" name="email" placeholder="Email address" required className="user" value={enteredEmail} onChange={(e) => setEnteredEmail(e.target.value)} /><br />
           <input type="password" name="password" placeholder="Password" required className="pass" value={password} onChange={(e) => setPassword(e.target.value)} /><br /><br />
           <label className="remember">
             <input id="rememberme" name="rememberme" value="remember" type="checkbox" />
@@ -90,6 +90,10 @@ export default function SignIn() {
       <h2 className="subtitle">Let's find your next favorite study spot!</h2>
       <div className="card">
         <button type="submit" className="signBttn" onClick={handleSubmit}>Login</button>
+      </div>
+      <div>
+        <p><b>First name: </b> first name</p>
+        <p><b>Number of users: </b> total users</p>
       </div>
     </>
   );

@@ -34,8 +34,7 @@
     color: black;
   }
 
-  .pass,
-  .email {
+  .pass {
     border-radius: 10px;
     width: 80%;
     font-size: 25px;
