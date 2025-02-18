@@ -8,7 +8,7 @@ export function SendMail(email, emailSubject, emailBody) {
         secure: true,
         requireTLS: true,
         auth: {
-            user: process.env.SMTP_EMAIl,
+            user: process.env.SMTP_EMAIL,
             pass: process.env.SMTP_PASSWORD,
         },
     })

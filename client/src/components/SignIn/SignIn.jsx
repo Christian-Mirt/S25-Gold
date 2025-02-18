@@ -57,7 +57,7 @@ export default function SignIn() {
     console.log(data);
 
     if (data.status == 200) {
-      console.log("Sent email");
+      alert("Please check your email!");
     } else {
       alert("No accounts found");
     }
