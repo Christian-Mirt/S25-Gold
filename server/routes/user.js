@@ -103,8 +103,8 @@ user.put("/reset-password", (req, res) => {
                 res.json(err.message);
             } else {
                 if (result.affectedRows > 0) {
-                    const msg = "To reset your password, please login with this temporary key.<br><br>" + tempKey;
-                    SendMail(req.body.email, "Reset Password", msg);
+                    const msg = "Hello from Productive Places!<br><br>To access your account, please login with this temporary key:<br><br>" + tempKey;
+                    SendMail(req.body.email, "Temporary Password", msg);
                     res.json({
                         status: 200,
                         message: "Updated login key, email sent",
