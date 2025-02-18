@@ -91,10 +91,6 @@ export default function SignIn() {
       <div className="card">
         <button type="submit" className="signBttn" onClick={handleSubmit}>Login</button>
       </div>
-      <div>
-        <p><b>First name: </b> first name</p>
-        <p><b>Number of users: </b> total users</p>
-      </div>
     </>
   );
 }
