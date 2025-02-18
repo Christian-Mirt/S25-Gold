@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { connection } from "../database/database.js";
-import { ComparePasword, HashedPassword, generateRandomPassword } from "../utils/helper.js";
+import { ComparePasword, HashedPassword, generateRandomPassword } from "../utils/GeneratePassword.js";
 import { SendMail } from "../utils/SendMail.js";
 const user = Router();
 
