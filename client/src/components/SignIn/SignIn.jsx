@@ -9,13 +9,20 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formBody = JSON.stringify({
+      email: enteredEmail,
+      password: password
+    })
+
     try {
       const response = await fetch(import.meta.env.VITE_API_KEY + '/user/signIn', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email: enteredEmail, password: password })
+        body: formBody,
       });
 
       const data = await response.json();
