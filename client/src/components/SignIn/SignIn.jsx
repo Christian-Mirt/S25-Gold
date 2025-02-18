@@ -6,33 +6,38 @@ export default function SignIn() {
   const navigate = useNavigate();
   const target_id = 1;
   const [user, setUser] = useState(null);
-  const [totalUsers, setTotalUsers] = useState(0);
-  const [firstName, setFirstName] = useState('');
+  const [enteredEmail, setEnteredEmail] = useState("");
   const [password, setPassword] = useState('');
+
+  function handleInputChange(identifier, value) {
+    if (identifier === "email") {
+      setEnteredEmail(value);
+    }
+  }
 
   const handleSubmit = async (e) => {
     try {
       const response = await fetch(import.meta.env.VITE_API_KEY + '/user/signIn', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({first_name: firstName, password: password})
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email, password: password })
       });
 
       const data = await response.json();
 
       if (response.ok) {
-          alert('Login successful! Redirecting...');
-          navigate('/searchfilter');
+        alert('Login successful! Redirecting...');
+        navigate('/searchfilter');
       } else {
-          alert(`Error: ${data.error || 'Login failed'}`);
+        alert(`Error: ${data.error || 'Login failed'}`);
       }
-  } catch (error) {
+    } catch (error) {
       console.error('Error logging in up:', error);
       alert('Something went wrong. Please try again.');
-  }
-};
+    }
+  };
 
   const getUser = async () => {
     const formBody = JSON.stringify({ id: target_id });
@@ -72,6 +77,37 @@ export default function SignIn() {
     }
   };
 
+  const handleForgotPassword = async (event) => {
+    event.preventDefault();
+
+    if (enteredEmail == "") {
+      alert("Please enter a valid email address");
+      return;
+    }
+
+    const formBody = JSON.stringify({
+      email: enteredEmail,
+    })
+
+    const result = await fetch(import.meta.env.VITE_API_KEY + '/user/reset-password', {
+      method: "PUT",
+      body: formBody,
+      headers: {
+        'content-type': 'application/json'
+      }
+    });
+
+    const data = await result.json();
+
+    console.log(data);
+
+    if (data.status == 200) {
+      console.log("Sent email");
+    } else {
+      alert("No accounts found");
+    }
+  };
+
   useEffect(() => {
     getUser();
     getTotalUsers();
@@ -82,22 +118,18 @@ export default function SignIn() {
       <div className="loginInfo">
         <form action="">
           <h1 className="loginHeader">Login</h1>
-          <input type="text" name="first_name" placeholder="Username" required className="user" value={firstName} onChange={(e) => setFirstName(e.target.value)}/><br />
-          <input type="password" name="password" placeholder="Password" required className="pass" value={password} onChange={(e) => setPassword(e.target.value)}/><br /><br />
+          <input type="email" name="email" placeholder="Email address" required className="email" onChange={(event) => handleInputChange("enteredEmail", event.target.value)} /><br />
+          <input type="password" name="password" placeholder="Password" required className="pass" value={password} onChange={(e) => setPassword(e.target.value)} /><br /><br />
           <label className="remember">
             <input id="rememberme" name="rememberme" value="remember" type="checkbox" />
             Remember Me
           </label><br />
-          <a href="#" className="forgot">Forgot Password?</a>
+          <a href="#" className="forgot" onClick={handleForgotPassword}>Forgot Password?</a>
         </form>
       </div>
       <h2 className="subtitle">Let's find your next favorite study spot!</h2>
       <div className="card">
         <button type="submit" className="signBttn" onClick={handleSubmit}>Login</button>
-      </div>
-      <div>
-        <p><b>First name: </b> {user ? user.first_name : "First Name"}</p>
-        <p><b>Number of users: </b> {totalUsers}</p>
       </div>
     </>
   );
