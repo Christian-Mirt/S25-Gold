@@ -38,4 +38,22 @@ place.get("/catalogs", (req, res) => {
     );
 });
 
+place.get("/reviews", (req, res) => {
+    connection.execute(
+        "SELECT * FROM reviews WHERE place_id = ?",
+        [req.body.id],
+        function (err, result) {
+            if (err) {
+                res.json(err.message);
+            } else {
+                res.json({
+                    status: 200,
+                    message: "Places reviews retrieved successfully",
+                    data: result,
+                });
+            }
+        }
+    );
+});
+
 export default place;

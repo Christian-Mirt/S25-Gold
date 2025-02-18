@@ -6,6 +6,8 @@ function Places() {
   const navigate = useNavigate();
   const [totalPlaces, setTotalPlaces] = useState(0);
   const [allPlaces, setPlaces] = useState(null);
+  const [selectedPlaceDetails, setSelectedPlaceDetails] = useState(null);
+
 
      const getTotalPlaces = async () => {
        const result = await fetch(import.meta.env.VITE_API_KEY + '/place/tps', {
@@ -21,7 +23,7 @@ function Places() {
          console.log(data);
          setTotalPlaces(data.data);
        } else {
-         console.log("Error fetching total users");
+         console.log("Error fetching total places");
        }
      };
 
@@ -40,8 +42,34 @@ function Places() {
       if (data.status === 200) {
         console.log(data);
         setPlaces(data.data);
+        getSelectedPlaceDetails(data.data[0].place_id);
       } else {
-        console.log("Error fetching user");
+        console.log("Error fetching places");
+      }
+    };
+
+    const getSelectedPlaceDetails = async (placeId) => {
+      const url = import.meta.env.VITE_API_KEY + '/place/reviews';
+      console.log(url);
+
+      const formBody = JSON.stringify({
+        id: placeId,
+      })
+
+      const response = await fetch(url, {
+        method: "GET",
+        body: formBody,
+        headers: {
+          'content-type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      
+      if (data.status === 200) {
+        console.log(data);
+        setSelectedPlaceDetails(data.data);
+      } else {
+        console.log("Error fetching place details");
       }
     };
   
@@ -100,6 +128,7 @@ function Places() {
         <div>
           <h4>User Manny Pacquiao says:</h4>
           <p>This place was not good.</p>
+          <p>{selectedPlaceDetails}</p>
         </div>
       </div>
     </div>
