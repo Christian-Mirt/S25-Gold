@@ -63,9 +63,8 @@ export default function SignIn() {
     }
   };
 
-  useEffect(() => {
-    getUser();
-  }, []);
+  // useEffect(() => {
+  // }, []);
 
   return (
     <>
