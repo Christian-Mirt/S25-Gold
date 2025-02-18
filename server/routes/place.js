@@ -2,7 +2,7 @@ import { Router } from "express";
 import { connection } from "../database/database.js";
 const place = Router();
 
-user.get("/tps", (req, res) => {
+place.get("/tps", (req, res) => {
     connection.execute(
         "select count(*) as tp from places",
         [],
@@ -20,7 +20,7 @@ user.get("/tps", (req, res) => {
     );
 });
 
-user.get("/catalogs", (req, res) => {
+place.get("/catalogs", (req, res) => {
     connection.execute(
         "SELECT name, overall_rating FROM places",
         [],
