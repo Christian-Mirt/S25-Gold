@@ -1,16 +1,79 @@
-h1, b, p, a{
+h1, h4, b, p, a{
     color: white;
 }
 
-ul{
-    padding-left: 0;
+.page-container {
+    display: flex;  /* Enables side-by-side layout */
+    justify-content: space-between;  /* Adds spacing between the two divs */
+    align-items: flex-start;  /* Aligns them at the top */
+    gap: 20px;  /* Space between divs */
 }
 
-.placesCatalog{
-    width: 420px;
+.places-catalog{
+    flex: 1;
     background-color:rgba(0,0,0,0.4);
-    transform: translate(-460px, -30px);
+    color:white;
     overflow-y: scroll;
     overflow-x: hidden;
     max-height: 60vh;
+    text-align: center;
+}
+
+.place-details {
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.841);
+    padding: 50px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto; /* Allows columns to take up available space */
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+
+th {
+    font-weight: bold;
+    border-bottom: 2px solid white; /* White line between rows */
+}
+
+tbody tr {
+    border-bottom: 1px solid white; /* White line between rows */
+}
+
+    tbody tr:hover {
+        background-color: rgba(208, 208, 208, 0.4);
+    }
+
+.star-rating {
+    position: relative;
+    display: inline-block;
+    font-size: 24px; /* Adjust size of stars */
+    line-height: 1;
   }
+
+.stars {
+    display: flex;
+    color: white; /* Default star color */
+}
+  
+    .stars.filled {
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        color: gold; /* Filled stars color */
+        white-space: nowrap;
+        width: 0; /* This will be dynamically updated */
+    }
+  
+    .star {
+        font-size: 24px; /* Adjust as needed */
+        margin-right: 3px; /* Small spacing */
+    }
+  

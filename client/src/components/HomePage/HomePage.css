@@ -1,8 +1,8 @@
 .caption{
   color: white;
   position: relative;
-  left: -460px;
-  top: -70px;
+  left: 300px;
+  top: 370px;
   font-size: 25px;
 }
 
@@ -17,6 +17,6 @@
   width: 100px;
   height: 100px;
   position: relative;
-  left: -460px;
-  top: -20px;
+  left: 460px;
+  top: 360px;
 }

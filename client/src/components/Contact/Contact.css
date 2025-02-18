@@ -5,7 +5,6 @@ h1, b, p{
 .contactCatalog{
     width: 420px;
     background-color:rgba(0,0,0,0.4);
-    transform: translate(-460px, -30px);
   }
 
   .favs{
@@ -13,7 +12,6 @@ h1, b, p{
     width: 80%;
     font-size: 25px;
     margin: 20px 0;
-    transform: translateY(-10px);
     padding: 5px;
   }
 
@@ -21,7 +19,6 @@ h1, b, p{
     border-radius: 10px;
     width: 80%;
     font-size: 25px;
-    transform: translateY(-20px);
     margin: 20px 0;
     padding: 5px;
   }
@@ -30,7 +27,6 @@ h1, b, p{
     border-radius: 10px;
     width: 80%;
     font-size: 25px;
-    transform: translateY(-20px);
     margin: 20px 0;
     padding: 5px;
   }
@@ -39,7 +35,6 @@ h1, b, p{
     border-radius: 10px;
     width: 80%;
     font-size: 25px;
-    transform: translateY(-20px);
     margin: 20px 0;
     padding: 5px;
   }

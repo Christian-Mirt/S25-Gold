@@ -1,10 +1,3 @@
-#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-  }
-
   .subtitle
   {
     color: white;
@@ -14,20 +7,17 @@
   .signBttn{
     background-color: white;
     color: black;
-    transform: translate(-480px, -20px);
   }
   
   .loginInfo{
     width: 420px;
     background-color:rgba(0,0,0,0.4);
-    transform: translate(-460px, -30px);
   }
   
   .signHeader{
     color: white;
     font-size: 45px;
     padding: 30px 40px;
-    transform: translateY(10px);
   }
   
   .user{
@@ -35,7 +25,6 @@
     width: 80%;
     font-size: 25px;
     margin: 20px 0;
-    transform: translateY(-10px);
     padding: 5px;
   }
   
@@ -47,7 +36,6 @@
     border-radius: 10px;
     width: 80%;
     font-size: 25px;
-    transform: translateY(-20px);
     margin: 20px 0;
     padding: 5px;
   }
