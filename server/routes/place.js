@@ -12,8 +12,8 @@ place.get("/tps", (req, res) => {
             } else {
                 res.json({
                     status: 200,
-                    message: "Total number of users retrieved successfully",
-                    data: result,
+                    message: "Total number of places retrieved successfully",
+                    data: result[0].tp,
                 });
             }
         }

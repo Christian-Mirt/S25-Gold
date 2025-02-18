@@ -9,7 +9,7 @@ function Places() {
 
      const getTotalUsers = async () => {
        const result = await fetch(import.meta.env.VITE_API_KEY + '/place/tps', {
-         method: "POST",
+         method: "GET",
          headers: {
            'content-type': 'application/json',
          },
