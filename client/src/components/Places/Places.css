@@ -1,4 +1,4 @@
-h1, h4, b, p, a{
+h1, h2, h3, h4, b, p, a{
     color: white;
 }
 
@@ -10,7 +10,7 @@ h1, h4, b, p, a{
 }
 
 .places-catalog{
-    flex: 1;
+    flex: 3;
     background-color:rgba(0,0,0,0.4);
     color:white;
     overflow-y: auto;
@@ -20,7 +20,7 @@ h1, h4, b, p, a{
 }
 
 .place-details {
-    flex: 1;
+    flex: 2;
     background-color: rgba(0, 0, 0, 0.841);
     overflow-y: auto;
     height: calc(100vh - 200px);
@@ -78,4 +78,19 @@ tbody tr {
         font-size: 24px; /* Adjust as needed */
         margin-right: 3px; /* Small spacing */
     }
-  
+
+@keyframes slideRefresh {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    }
+    
+    .refreshing {
+    animation: slideRefresh 0.5s ease-in-out;
+    }
+      

@@ -42,7 +42,7 @@ place.get("/reviews", (req, res) => {
     const { place_id } = req.query; // Extract data from query parameters
 
     connection.execute(
-        "SELECT * FROM reviews WHERE place_id = ?",
+        "SELECT r.*, u.first_name, u.last_name FROM reviews r LEFT JOIN user_information u ON r.user_id = u.user_id WHERE place_id = ?",
         [place_id],
         function (err, result) {
             if (err) {
