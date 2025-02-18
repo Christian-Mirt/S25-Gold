@@ -18,6 +18,7 @@ function Places() {
        const data = await result.json();
    
        if (data.status === 200) {
+         console.log(data);
          setTotalUsers(data.data);
        } else {
          console.log("Error fetching total users");

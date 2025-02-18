@@ -13,7 +13,7 @@ place.get("/tps", (req, res) => {
                 res.json({
                     status: 200,
                     message: "Total number of users retrieved successfully",
-                    data: result[0].tp,
+                    data: result,
                 });
             }
         }
@@ -22,7 +22,7 @@ place.get("/tps", (req, res) => {
 
 place.get("/catalogs", (req, res) => {
     connection.execute(
-        "SELECT name, overall_rating FROM places",
+        "SELECT * FROM places",
         [],
         function (err, result) {
             if (err) {
