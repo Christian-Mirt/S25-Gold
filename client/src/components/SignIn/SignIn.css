@@ -60,3 +60,7 @@
   .profileTitle {
     transform: translateY(10px);
   }
+
+  input {
+    display: inline;
+  }
