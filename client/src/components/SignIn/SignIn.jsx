@@ -29,7 +29,7 @@ export default function SignIn() {
 
       if (data.status == 200) {
         alert('Login successful! Redirecting...');
-        navigate('/searchfilter');
+        navigate('/profile');
       } else {
         alert('Email or password is incorrect');
       }
