@@ -6,28 +6,29 @@ export default function SignIn() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [enteredEmail, setEnteredEmail] = useState("");
-  const [password, setPassword] = useState('');
+  const [enteredPassword, setEnteredPassword] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
+
     e.preventDefault();
 
     const formBody = JSON.stringify({
       email: enteredEmail,
-      password: password
+      password: enteredPassword
     })
 
     try {
-      const response = await fetch(import.meta.env.VITE_API_KEY + '/user/signIn', {
+      const response = await fetch(import.meta.env.VITE_API_KEY + '/user/login', {
         method: 'POST',
+        body: formBody,
         headers: {
           'Content-Type': 'application/json'
-        },
-        body: formBody,
+        }
       });
 
-      const data = await response.json();
+      const data = await result.json();
 
-      if (response.ok) {
+      if (data.status == 200) {
         alert('Login successful! Redirecting...');
         navigate('/searchfilter');
       } else {
@@ -70,9 +71,6 @@ export default function SignIn() {
     }
   };
 
-  // useEffect(() => {
-  // }, []);
-
   return (
     <>
       <div className='center-vertically'>
@@ -81,7 +79,7 @@ export default function SignIn() {
             <form action="">
               <h1 className="loginHeader">Login</h1>
               <input type="email" name="email" placeholder="Email address" required className="user" value={enteredEmail} onChange={(e) => setEnteredEmail(e.target.value)} /><br />
-              <input type="password" name="password" placeholder="Password" required className="pass" value={password} onChange={(e) => setPassword(e.target.value)} /><br /><br />
+              <input type="password" name="password" placeholder="Password" required className="pass" value={enteredPassword} onChange={(e) => setEnteredPassword(e.target.value)} /><br /><br />
               <label className="remember">
                 <input id="rememberme" name="rememberme" value="remember" type="checkbox" />
                 Remember Me
