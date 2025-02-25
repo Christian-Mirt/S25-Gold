@@ -5,9 +5,11 @@ p {
 }
 
 .profileCatalog {
-  width: 420px;
+  width: 600px;
   background-color: rgba(0, 0, 0, 0.4);
   margin-left: 5%;
+  padding: 20px;
+  margin-top: 20px;
 }
 
 .favs {
