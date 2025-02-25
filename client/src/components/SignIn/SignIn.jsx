@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 
 export default function SignIn() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState('');
 
@@ -18,7 +17,7 @@ export default function SignIn() {
     })
 
     try {
-      const response = await fetch(import.meta.env.VITE_API_KEY + '/user/login', {
+      const result = await fetch(import.meta.env.VITE_API_KEY + '/user/login', {
         method: 'POST',
         body: formBody,
         headers: {
@@ -32,7 +31,7 @@ export default function SignIn() {
         alert('Login successful! Redirecting...');
         navigate('/searchfilter');
       } else {
-        alert(`Error: ${data.error || 'Login failed'}`);
+        alert('Email or password is incorrect');
       }
     } catch (error) {
       console.error('Error logging in up:', error);
