@@ -28,8 +28,12 @@ export default function SignIn() {
       const data = await result.json();
 
       if (data.status == 200) {
-        alert('Login successful! Redirecting...');
-        navigate('/profile');
+        console.log(data);
+
+        const id = data.data[0].user_id;
+
+        navigate(`/profile/${id}`);
+
       } else {
         alert('Email or password is incorrect');
       }

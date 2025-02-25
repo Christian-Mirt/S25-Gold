@@ -132,4 +132,22 @@ user.put("/reset-password", (req, res) => {
     );
 });
 
+user.get("/:id", (req, res) => {
+    connection.execute(
+        "select * from user_information where user_id=?",
+        [req.params.id],
+        function (err, result) {
+            if (err) {
+                res.json(err.message);
+            } else {
+                res.json({
+                    status: 200,
+                    message: "Response from user get api",
+                    data: result,
+                });
+            }
+        }
+    );
+});
+
 export default user;

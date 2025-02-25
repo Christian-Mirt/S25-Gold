@@ -1,23 +1,47 @@
 import './Profile.css'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from "react-router-dom";
 import { useRef, useEffect } from 'react';
 
 function Profile() {
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const { id } = useParams();
   const profilePicRef = useRef(null);
   const inputRef = useRef(null);
 
-  useEffect(() => {
-    inputRef.current.onchange = function () {
-      if (this.files.length > 0) {
-        profilePicRef.current.src = URL.createObjectURL(this.files[0]);
+  const getUser = async (userId) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_KEY + `/user/${userId}`);
+      const result = await response.json();
+
+      if (response.ok) {
+        setUser(result.data[0]);
+      } else {
+        console.error("Error fetching user:", result);
       }
-    };
-  }, []);
+    } catch (error) {
+      console.error("Fetch error:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (id) {
+      getUser(id);
+    }
+
+    if (inputRef.current) {
+      inputRef.current.onchange = function () {
+        if (this.files.length > 0) {
+          profilePicRef.current.src = URL.createObjectURL(this.files[0]);
+        }
+      };
+    }
+  }, [id]);
+
 
   return (
     <div className="profileCatalog">
-      <h1 className="profileTitle"><img src="about:blank" id="pfp" ref={profilePicRef} className='dot' />Your Profile</h1>
+      <h1 className="profileTitle"><img src="about:blank" id="pfp" ref={profilePicRef} className='dot' />{user ? `Welcome, ${user.First_Name}!` : "Please login"}</h1>
       <a href className='favs'>Your favorites</a><br /><br />
       <a href className='reviews'>Your Reviews</a><br /><br />
       <a href className='prefs'>Your Preferences</a><br /><br />
