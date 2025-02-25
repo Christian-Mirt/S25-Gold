@@ -4,7 +4,7 @@ Team Gold - Spring 2025
 
 mevan028 - Michael Evans - mevan028@odu.edu
 
-yomnaE1 - Yomna Elmousalami - yelmo001@odu.edu
+yomnaE1 and yomnaelmousalami - Yomna Elmousalami - yelmo001@odu.edu and yomnaelmousalami@gmail.com, professor approved I can use my school and personal github accounts for this project
 
 christian-mirt - Christian Mirt - cmirt001@odu.edu
 

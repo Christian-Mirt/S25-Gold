@@ -5,13 +5,18 @@ import React, { useState } from 'react';
 function SearchFilter() {
   const navigate = useNavigate();
   const [rating, setRating] = useState('');
+  const [wifi, setWifi] = useState('');
 
   const searchPlace = () =>{
-    navigate(`/places?rating=${rating}`);
+    navigate(`/places?rating=${rating}&wifi=${wifi}`);
   }
 
   const handleRatingChange = (event) => {
     setRating(event.target.value);
+  };
+
+  const handleWifiChange = (event) => {
+    setWifi(event.target.value); 
   };
 
   return( 
@@ -31,7 +36,7 @@ function SearchFilter() {
           <option value="" selected disabled>Hours</option>
           <option value="1">Option 1</option>
         </select>
-        <select type="text" placeholder="Wifi" className = "wifi">
+        <select type="text" placeholder="Wifi" className = "wifi" value={wifi} onChange={handleWifiChange}>
           <option value="" selected disabled>Wifi</option>
           <option value="excellent">Excellent</option>
           <option value="good">Good</option>

@@ -7,6 +7,7 @@ function Places() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const ratingParam = queryParams.get('rating');
+  const wifiParam = queryParams.get('wifi');
 
   const [totalPlaces, setTotalPlaces] = useState(0);
   const [allPlaces, setPlaces] = useState(null);
@@ -14,6 +15,8 @@ function Places() {
   const [selectedPlaceDetails, setSelectedPlaceDetails] = useState(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
+  const [sortOrder, setSortOrder] = useState('asc');
+  const [alphabeticalOrder, setAlphabeticalOrder] = useState('asc');
 
   const getTotalPlaces = async () => {
     const result = await fetch(import.meta.env.VITE_API_KEY + '/place/tps', {
@@ -45,7 +48,7 @@ function Places() {
       setPlaces(data.data);
       // selects the first place in the list
       selectPlace(data.data[0]);
-      filterPlaces(data.data, ratingParam);
+      filterPlaces(data.data, ratingParam, wifiParam);
     } else {
       console.log("Error fetching places");
     }
@@ -77,19 +80,50 @@ function Places() {
     }
   };
 
-  const filterPlaces = (places, rating) => {
+  const filterPlaces = (places, rating, wifi) => {
+    let filtered = places;
+
     if (rating) {
-      const filtered = places.filter((place) => place.overall_rating >= parseFloat(rating));
-      setFilteredPlaces(filtered);
-    } else {
-      setFilteredPlaces(places);
+      filtered = places.filter((place) => place.overall_rating >= parseFloat(rating));
+    } 
+    
+    if (wifi) {
+      filtered = filtered.filter((place) => place.wifi_quality === wifi);
     }
+
+    setFilteredPlaces(filtered);
+  };
+
+  const handleSortByRating = () => {
+    const sortedPlaces = [...filteredPlaces].sort((a, b) => {
+      if (sortOrder === 'asc') {
+        return a.overall_rating - b.overall_rating;
+      } else {
+        return b.overall_rating - a.overall_rating; 
+      }
+    });
+  
+    setFilteredPlaces(sortedPlaces);
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+  };
+
+  const handleSortAlphabetically = () => {
+    const sortedPlaces = [...filteredPlaces].sort((a, b) => {
+      if (alphabeticalOrder === 'asc') {
+        return a.name.localeCompare(b.name); // Sort A-Z
+      } else {
+        return b.name.localeCompare(a.name); // Sort Z-A
+      }
+    });
+
+    setFilteredPlaces(sortedPlaces); // Update the sorted list
+    setAlphabeticalOrder(alphabeticalOrder === 'asc' ? 'desc' : 'asc'); // Toggle sorting order
   };
 
   useEffect(() => {
     getPlaces();
     getTotalPlaces();
-  }, [ratingParam]);
+  }, [ratingParam, wifiParam]);
 
   return (
     <div className='page-container'>
@@ -102,8 +136,8 @@ function Places() {
           <table>
             <thead>
               <tr>
-                <th>Rating</th>
-                <th>Place</th>
+                <th onClick={handleSortByRating} style={{ cursor: 'pointer' }}>Rating {sortOrder === 'asc' ? '↑' : '↓'}</th>
+                <th onClick={handleSortAlphabetically} style={{ cursor: 'pointer' }}>Place {alphabeticalOrder === 'asc' ? '↑' : '↓'}</th>
                 <th>Location</th>
                 <th>Hours</th>
               </tr>

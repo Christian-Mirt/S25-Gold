@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { connection } from "../database/database.js";
-import { ComparePasword, HashedPassword, generateRandomPassword } from "../utils/GeneratePassword.js";
+import { ComparePasword, CompareText, HashedPassword, generateRandomPassword } from "../utils/GeneratePassword.js";
 import { SendMail } from "../utils/SendMail.js";
 const user = Router();
 
@@ -74,19 +74,29 @@ user.post("/signUp", (req, res) => {
     );
 });
 
-user.post("/signIn", (req, res) => {
+user.post("/login", (req, res) => {
+
     connection.execute(
-        "SELECT email, password from user_information WHERE email = ? AND password = ?",
-        [req.body.email, req.body.password],
+        "select * from user_information where email=?",
+        [req.body.email],
         function (err, result) {
             if (err) {
                 res.json(err.message);
             } else {
-                res.json({
-                    status: 200,
-                    message: "Successfully logged in",
-                    data: result,
-                });
+                if (result[0]) {
+                    if (CompareText(req.body.password, result[0].password) || CompareText(req.body.password, result[0].temp_key)) {
+                        res.json({
+                            status: 200,
+                            message: "User logged in successfully!",
+                            data: result,
+                        });
+                    }
+                } else {
+                    res.json({
+                        status: 401,
+                        message: "Wrong username or password",
+                    });
+                }
             }
         }
     );
@@ -117,6 +127,24 @@ user.put("/reset-password", (req, res) => {
                         data: result,
                     });
                 }
+            }
+        }
+    );
+});
+
+user.get("/:id", (req, res) => {
+    connection.execute(
+        "select * from user_information where user_id=?",
+        [req.params.id],
+        function (err, result) {
+            if (err) {
+                res.json(err.message);
+            } else {
+                res.json({
+                    status: 200,
+                    message: "Response from user get api",
+                    data: result,
+                });
             }
         }
     );

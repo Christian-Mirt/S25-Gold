@@ -5,7 +5,7 @@ import SignUp from './components/SignUp/SignUp'
 import Header from './shared/Header/Header';
 import SearchFilter from './components/SearchFilter/SearchFilter'
 import Places from './components/Places/Places'
-import Contact from './components/Contact/Contact';
+import Profile from './components/Profile/Profile';
 import SignIn from './components/SignIn/SignIn';
 
 function App() {
@@ -17,7 +17,8 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/searchfilter" element={<SearchFilter />} />
         <Route path="/places" element={<Places />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/profile/" element={<Profile />} />
         <Route path="/signin" element={<SignIn />} />
       </Routes>
     </Router>
