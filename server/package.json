@@ -6,7 +6,7 @@
   "scripts": {
     "server": "node app.js",
     "dev": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC",
@@ -14,12 +14,15 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
+    "chai": "^5.2.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "generate-password": "^1.7.1",
+    "mocha": "^11.1.0",
     "mysql2": "^3.12.0",
     "nodemailer": "^6.10.0",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "supertest": "^7.0.0"
   }
 }
