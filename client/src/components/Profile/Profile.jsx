@@ -25,7 +25,10 @@ function Profile() {
   };
 
   useEffect(() => {
-    if (id) {
+    if (!id) {
+      alert("Please login to access the profile page!");
+      navigate("/signin");
+    } else {
       getUser(id);
     }
 
@@ -36,7 +39,8 @@ function Profile() {
         }
       };
     }
-  }, [id]);
+
+  }, [id, navigate]);
 
 
   return (
