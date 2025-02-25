@@ -89,7 +89,7 @@ export default function SignIn() {
           </div>
           <h2 className="subtitle">Let's find your next favorite study spot!</h2>
           <div className="card">
-            <button type="submit" className="signBttn" onClick={handleSubmit}>Login</button>
+            <button type="submit" className="signBttn" onClick={handleLogin}>Login</button>
           </div>
         </div>
       </div>
