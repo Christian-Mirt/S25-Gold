@@ -1,6 +1,6 @@
 import './Profile.css'
 import { useNavigate, useParams } from "react-router-dom";
-import { useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 function Profile() {
   const [user, setUser] = useState(null);
