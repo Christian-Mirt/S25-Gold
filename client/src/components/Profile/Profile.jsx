@@ -45,7 +45,7 @@ function Profile() {
 
   return (
     <div className="profileCatalog">
-      <h1 className="profileTitle"><img src="about:blank" id="pfp" ref={profilePicRef} className='dot' />{user ? `Welcome, ${user.first_name}!` : "Please login"}</h1>
+      <h1 className="profileTitle"><img src="/default-profile.png" id="pfp" ref={profilePicRef} className='dot' />{user ? `Welcome, ${user.first_name}!` : "Please login"}</h1>
       <a href className='favs'>Your favorites</a><br /><br />
       <a href className='reviews'>Your Reviews</a><br /><br />
       <a href className='prefs'>Your Preferences</a><br /><br />
