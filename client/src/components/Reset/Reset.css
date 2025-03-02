@@ -4,7 +4,7 @@
     padding: 30px 40px;
   }
 
-  .newPass {
+  .email, .newPass {
     border-radius: 10px;
     width: 80%;
     font-size: 25px;
@@ -13,16 +13,8 @@
   }
 
   .newPass::placeholder,
-  .confirmPass::placeholder {
+  .email::placeholder {
     color: black;
-  }
-
-  .confirmPass {
-    border-radius: 10px;
-    width: 80%;
-    font-size: 25px;
-    margin: 20px 0;
-    padding: 5px;
   }
 
   .card {
