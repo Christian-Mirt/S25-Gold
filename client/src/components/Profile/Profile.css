@@ -12,30 +12,13 @@ p {
   margin-top: 20px;
 }
 
-.favs {
+.favs, .reviews, .prefs, .resetPass, .input_file {
   border-radius: 10px;
   width: 80%;
   font-size: 25px;
   margin: 20px 0;
   padding: 5px;
 }
-
-.reviews {
-  border-radius: 10px;
-  width: 80%;
-  font-size: 25px;
-  margin: 20px 0;
-  padding: 5px;
-}
-
-.prefs {
-  border-radius: 10px;
-  width: 80%;
-  font-size: 25px;
-  margin: 20px 0;
-  padding: 5px;
-}
-
 .profilePhoto {
   border-radius: 10px;
   width: 80%;

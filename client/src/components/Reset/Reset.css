@@ -1,0 +1,41 @@
+  .resetHeader {
+    color: white;
+    font-size: 45px;
+    padding: 30px 40px;
+  }
+
+  .newPass {
+    border-radius: 10px;
+    width: 80%;
+    font-size: 25px;
+    margin: 20px 0;
+    padding: 5px;
+  }
+
+  .newPass::placeholder,
+  .confirmPass::placeholder {
+    color: black;
+  }
+
+  .confirmPass {
+    border-radius: 10px;
+    width: 80%;
+    font-size: 25px;
+    margin: 20px 0;
+    padding: 5px;
+  }
+
+  .card {
+    padding: 2em;
+  }
+
+  .resetBttn {
+    background-color: white;
+    color: black;
+  }
+
+  .resetInfo {
+    width: 420px;
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+  }

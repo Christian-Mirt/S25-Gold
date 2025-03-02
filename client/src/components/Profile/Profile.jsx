@@ -9,6 +9,10 @@ function Profile() {
   const profilePicRef = useRef(null);
   const inputRef = useRef(null);
 
+  const handleResetPass = async (e) => {
+    navigate(`/reset`);
+  }
+
   const getUser = async (userId) => {
     try {
       const response = await fetch(import.meta.env.VITE_API_KEY + `/user/${userId}`);
@@ -50,7 +54,8 @@ function Profile() {
       <a href className='reviews'>Your Reviews</a><br /><br />
       <a href className='prefs'>Your Preferences</a><br /><br />
       <label for="input_file" className='profilePhoto'>Upload a Profile Photo</label>
-      <input type="file" accept="image/*" id="input_file" ref={inputRef}></input>
+      <input type="file" accept="image/*" id="input_file" ref={inputRef}></input><br /><br />
+      <a href className='resetPass' onClick={handleResetPass}>Reset your Password</a><br /><br />
     </div>
   )
 }
