@@ -4,12 +4,25 @@ p {
   color: white;
 }
 
+.profileContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
 .profileCatalog {
   width: 600px;
   background-color: rgba(0, 0, 0, 0.4);
-  margin-left: 5%;
   padding: 20px;
   margin-top: 20px;
+}
+
+.reviewCatalog {
+  width: 600px;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
 }
 
 .favs, .reviews, .prefs, .resetPass, .input_file {
@@ -45,4 +58,41 @@ p {
 
 input {
   display: none;
+}
+
+.reviewCatalog h2 {
+  color: white;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.reviewCatalog label {
+  display: block;
+  color: white;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.reviewCatalog input,
+.reviewCatalog textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.reviewCatalog button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.reviewCatalog button:hover {
+  background-color: #0056b3;
 }
