@@ -75,7 +75,7 @@ function Profile() {
         <h2>Submit a Review</h2>
         <form onSubmit={handleReviewSubmit}>
           <div>
-            <label htmlFor="reviewTitle">Title:</label>
+            <label htmlFor="reviewTitle">Place:</label>
             <input
               type="text"
               id="reviewTitle"
