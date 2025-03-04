@@ -28,6 +28,7 @@ app.use(cors({
     methods: ["GET", "POST", "PUT"],
     allowedHeaders: ["Content-Type"],
     credentials: true,
+    exposedHeaders: ["Set-Cookie"],
 }));
 
 app.use(session({

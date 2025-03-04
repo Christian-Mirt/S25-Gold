@@ -75,30 +75,29 @@ user.post("/signUp", (req, res) => {
 });
 
 user.post("/login", (req, res) => {
-
     connection.execute(
         "select * from user_information where email=?",
         [req.body.email],
         function (err, result) {
             if (err) {
-                res.json(err.message);
-            } else {
-                if (result[0]) {
-                    if (CompareText(req.body.password, result[0].password) || CompareText(req.body.password, result[0].temp_key)) {
-                        req.session.user = { id: result[0].user_id, email: result[0].email };
-                        console.log(req.session.user);
+                res.status(500).json({ error: err.message });
+            } else if (result[0]) {
+                if (CompareText(req.body.password, result[0].password) || CompareText(req.body.password, result[0].temp_key)) {
+                    req.session.user = { id: result[0].user_id, email: result[0].email, first_name: result[0].first_name };
+                    console.log('Session set:', req.session.user);
+                    req.session.save((err) => {
+                        if (err) console.error('Session Save Error:', err);
                         res.json({
                             status: 200,
                             message: "User logged in successfully!",
                             data: req.session.user,
                         });
-                    }
-                } else {
-                    res.json({
-                        status: 401,
-                        message: "Wrong username or password",
                     });
+                } else {
+                    res.status(401).json({ status: 401, message: "Wrong username or password" });
                 }
+            } else {
+                res.status(401).json({ status: 401, message: "Wrong username or password" });
             }
         }
     );
