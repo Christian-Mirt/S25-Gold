@@ -30,8 +30,6 @@ export default function SignIn() {
       if (data.status == 200) {
         console.log(data);
 
-        const id = data.data[0].user_id;
-
         navigate(`/profile`);
 
       } else {

@@ -25,22 +25,19 @@ function Profile() {
   }
 
   const getUser = async () => {
-    try {
-      const response = await fetch(import.meta.env.VITE_API_KEY + `/auth/session`, {
-        credentials: 'include'
-      });
-      const result = await response.json();
-      console.log(result);
-      console.log(result.data);
+    const response = await fetch(import.meta.env.VITE_API_KEY + `/auth/session`, {
+      credentials: 'include'
+    });
 
-      if (response.ok) {
-        setUser(result.data);
-      } else {
-        console.error("Error fetching user:", result);
-        navigate("/signin");
-      }
-    } catch (error) {
-      console.error("Fetch error:", error);
+    const result = await response.json();
+
+    console.log(result);
+    console.log(result.data);
+
+    if (response.ok) {
+      setUser(result.data);
+    } else {
+      console.error("Error fetching user:", result);
       navigate("/signin");
     }
   };
