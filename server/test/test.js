@@ -96,9 +96,14 @@ describe('Testing user/signUp', () => {
     });
 
     after(async function () {
+
+        const body = {
+            id: userId
+        };
+
         const response = await supertest(app)
             .delete(`/user/`)
-            .send({ id: userId });
+            .send(body);
 
         console.log("Deleted:", response.body);
     });

@@ -161,7 +161,6 @@ user.delete("/", (req, res) => {
                 res.json({
                     status: 200,
                     message: "User deleted successfully",
-                    data: id,
                 });
             }
         }
