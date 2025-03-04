@@ -5,7 +5,6 @@ import { useState, useRef, useEffect } from 'react';
 function Profile() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-  const { id } = useParams();
   const profilePicRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -25,28 +24,27 @@ function Profile() {
     navigate(`/reset`);
   }
 
-  const getUser = async (userId) => {
+  const getUser = async () => {
     try {
-      const response = await fetch(import.meta.env.VITE_API_KEY + `/user/${userId}`);
+      const response = await fetch(import.meta.env.VITE_API_KEY + `/auth/session`, {
+        credentials: 'include'
+      });
       const result = await response.json();
 
       if (response.ok) {
-        setUser(result.data[0]);
+        setUser(result.data);
       } else {
         console.error("Error fetching user:", result);
+        navigate("/signin");
       }
     } catch (error) {
       console.error("Fetch error:", error);
+      navigate("/signin");
     }
   };
 
   useEffect(() => {
-    if (!id) {
-      alert("Please login to access the profile page!");
-      navigate("/signin");
-    } else {
-      getUser(id);
-    }
+    getUser();
 
     if (inputRef.current) {
       inputRef.current.onchange = function () {
@@ -102,7 +100,7 @@ function Profile() {
           <button type="submit">Submit Review</button>
         </form>
       </div>
-    </div>    
+    </div>
   )
 }
 

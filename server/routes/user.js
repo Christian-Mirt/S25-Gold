@@ -85,6 +85,7 @@ user.post("/login", (req, res) => {
             } else {
                 if (result[0]) {
                     if (CompareText(req.body.password, result[0].password) || CompareText(req.body.password, result[0].temp_key)) {
+                        req.session.user = { id: result[0].user_id, email: result[0].email };
                         res.json({
                             status: 200,
                             message: "User logged in successfully!",
@@ -149,5 +150,14 @@ user.get("/:id", (req, res) => {
         }
     );
 });
+
+user.get("/auth/session", (req, res) => {
+    if (req.session.user) {
+        res.json({ status: 200, data: req.session.user });
+    } else {
+        res.status(401).json({ message: "Not logged in" });
+    }
+});
+
 
 export default user;
