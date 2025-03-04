@@ -1,30 +1,31 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './components/HomePage/HomePage';
-import SignUp from './components/SignUp/SignUp'
-import Header from './shared/Header/Header';
-import SearchFilter from './components/SearchFilter/SearchFilter'
-import Places from './components/Places/Places'
-import Profile from './components/Profile/Profile';
-import SignIn from './components/SignIn/SignIn';
-import Reset from './components/Reset/Reset';
+import bodyParser from "body-parser";
+import cors from "cors";
+import express from "express";
+import user from "./routes/user.js";
+import place from "./routes/place.js"
+const app = express();
+const port = 8080;
 
-function App() {
-    return (
-        <Router>
-            <Header />
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/searchfilter" element={<SearchFilter />} />
-                <Route path="/places" element={<Places />} />
-                <Route path="/profile/:id" element={<Profile />} />
-                <Route path="/profile/" element={<Profile />} />
-                <Route path="/signin" element={<SignIn />} />
-                <Route path="/reset" element={<Reset />} />
-            </Routes>
-        </Router>
-    );
+const myLogger = function (req, res, next) {
+    console.log("Calling Api");
+    next();
+    console.log("Api calling has done");
 }
 
-export default App;
+app.use(myLogger);
+app.use(bodyParser.json());
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT'],
+    allowedHeaders: ['Content-Type']
+}));
+
+app.use('/user', user);
+
+app.use('/place', place);
+
+app.listen(port, () => {
+    console.log(`Server is running at port ${port}`);
+});
+
+export default app;
