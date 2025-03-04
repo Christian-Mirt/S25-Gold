@@ -54,7 +54,7 @@ function Profile() {
       };
     }
 
-  }, [id, navigate]);
+  }, []);
 
 
   return (
