@@ -44,6 +44,7 @@ app.use(session({
         path: '/',
     },
     name: 'connect.sid',
+    genid: (req) => require('crypto').randomBytes(16).toString('hex'),
 }));
 
 app.use('/user', user);

@@ -85,14 +85,14 @@ user.post("/login", (req, res) => {
             } else if (result[0]) {
                 if (CompareText(req.body.password, result[0].password) || CompareText(req.body.password, result[0].temp_key)) {
                     req.session.user = { id: result[0].user_id, email: result[0].email, first_name: result[0].first_name };
-                    console.log('Session set:', req.session.user);
+                    console.log('Session set - ID:', req.sessionID, 'Data:', req.session.user);
 
                     req.session.save((err) => {
                         if (err) {
                             console.error('Session Save Error:', err);
                             res.status(500).json({ error: 'Failed to save session' });
                         } else {
-                            console.log('Session saved to store, sending response with cookie');
+                            console.log('Session saved - ID:', req.sessionID, 'Data:', req.session);
                             res.set('X-Session-ID', req.sessionID);
                             res.json({
                                 status: 200,
