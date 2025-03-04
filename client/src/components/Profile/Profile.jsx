@@ -25,7 +25,6 @@ function Profile() {
   }
 
   const getUser = async () => {
-
     const response = await fetch(import.meta.env.VITE_API_KEY + '/user/auth/session', {
       credentials: 'include'
     });
@@ -39,6 +38,7 @@ function Profile() {
       navigate("/signin");
     }
   };
+
 
   useEffect(() => {
     getUser();
