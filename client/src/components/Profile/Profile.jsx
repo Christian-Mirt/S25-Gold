@@ -30,6 +30,8 @@ function Profile() {
         credentials: 'include'
       });
       const result = await response.json();
+      console.log(result);
+      console.log(result.data);
 
       if (response.ok) {
         setUser(result.data);
