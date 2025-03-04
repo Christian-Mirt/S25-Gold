@@ -41,7 +41,9 @@ app.use(session({
         httpOnly: true,
         secure: true,
         sameSite: 'None',
-    }
+        path: '/',
+    },
+    name: 'connect.sid',
 }));
 
 app.use('/user', user);

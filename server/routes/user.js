@@ -80,18 +80,26 @@ user.post("/login", (req, res) => {
         [req.body.email],
         function (err, result) {
             if (err) {
+                console.error('Database Error:', err);
                 res.status(500).json({ error: err.message });
             } else if (result[0]) {
                 if (CompareText(req.body.password, result[0].password) || CompareText(req.body.password, result[0].temp_key)) {
                     req.session.user = { id: result[0].user_id, email: result[0].email, first_name: result[0].first_name };
                     console.log('Session set:', req.session.user);
+
                     req.session.save((err) => {
-                        if (err) console.error('Session Save Error:', err);
-                        res.json({
-                            status: 200,
-                            message: "User logged in successfully!",
-                            data: req.session.user,
-                        });
+                        if (err) {
+                            console.error('Session Save Error:', err);
+                            res.status(500).json({ error: 'Failed to save session' });
+                        } else {
+                            console.log('Session saved to store, sending response with cookie');
+                            res.set('X-Session-ID', req.sessionID);
+                            res.json({
+                                status: 200,
+                                message: "User logged in successfully!",
+                                data: req.session.user,
+                            });
+                        }
                     });
                 } else {
                     res.status(401).json({ status: 401, message: "Wrong username or password" });
@@ -152,9 +160,13 @@ user.get("/:id", (req, res) => {
 });
 
 user.get("/auth/session", (req, res) => {
+    console.log('Session ID from request:', req.sessionID);
+    console.log('Session Data from store:', req.session);
     if (req.session.user) {
+        console.log('User found in session:', req.session.user);
         res.json({ status: 200, data: req.session.user });
     } else {
+        console.log('No user in session');
         res.status(401).json({ message: "Not logged in" });
     }
 });
