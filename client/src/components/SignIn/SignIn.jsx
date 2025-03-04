@@ -32,7 +32,7 @@ export default function SignIn() {
 
         const id = data.data[0].user_id;
 
-        navigate(`/profile/${id}`);
+        navigate(`/profile`);
 
       } else {
         alert('Email or password is incorrect');
