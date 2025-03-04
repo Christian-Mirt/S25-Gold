@@ -150,7 +150,7 @@ user.get("/:id", (req, res) => {
     );
 });
 
-user.delete("/:id", (req, res) => {
+user.delete("/", (req, res) => {
     connection.execute(
         "delete from user_information where user_id=?",
         [req.params.id],
