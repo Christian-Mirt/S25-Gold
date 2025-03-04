@@ -2,12 +2,13 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
 import session from "express-session";
-import MemoryStore from 'memorystore';
+import MySQLStore from 'express-mysql-session';
 import user from "./routes/user.js";
 import place from "./routes/place.js"
 const app = express();
 const port = 8080;
-const MemoryStoreInstance = MemoryStore(session);
+
+const sessionStore = new MySQLStore({}, connection);
 
 const myLogger = function (req, res, next) {
     console.log("Calling Api");
@@ -29,9 +30,7 @@ app.use(session({
     secret: "0xZwP44QiUeeWjjq3f39",
     resave: false,
     saveUninitialized: false,
-    store: new MemoryStoreInstance({
-        checkPeriod: 86400000,
-    }),
+    store: sessionStore,
     cookie: {
         maxAge: 86400000,
         httpOnly: true,

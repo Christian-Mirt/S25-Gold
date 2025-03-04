@@ -22,7 +22,8 @@ export default function SignIn() {
         body: formBody,
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        credentials: 'include'
       });
 
       const data = await result.json();
