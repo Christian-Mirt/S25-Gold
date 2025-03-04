@@ -86,6 +86,7 @@ user.post("/login", (req, res) => {
                 if (result[0]) {
                     if (CompareText(req.body.password, result[0].password) || CompareText(req.body.password, result[0].temp_key)) {
                         req.session.user = { id: result[0].user_id, email: result[0].email };
+                        console.log(req.session.user);
                         res.json({
                             status: 200,
                             message: "User logged in successfully!",

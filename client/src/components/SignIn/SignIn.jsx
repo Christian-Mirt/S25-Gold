@@ -28,7 +28,6 @@ export default function SignIn() {
       const data = await result.json();
 
       if (data.status == 200) {
-        console.log(data);
 
         navigate(`/profile`);
 
