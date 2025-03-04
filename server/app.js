@@ -19,7 +19,7 @@ app.use(myLogger);
 app.use(bodyParser.json());
 
 app.use(cors({
-    origin: "https://productive-places.web.app/",
+    origin: "https://productive-places.web.app",
     methods: ["GET", "POST", "PUT"],
     allowedHeaders: ["Content-Type"],
     credentials: true,
