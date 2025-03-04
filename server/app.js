@@ -17,15 +17,13 @@ const myLogger = function (req, res, next) {
 
 app.use(myLogger);
 app.use(bodyParser.json());
+
 app.use(cors({
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT'],
-    allowedHeaders: ['Content-Type']
+    origin: "https://productive-places.web.app/",
+    methods: ["GET", "POST", "PUT"],
+    allowedHeaders: ["Content-Type"],
+    credentials: true,
 }));
-
-app.use('/user', user);
-
-app.use('/place', place);
 
 app.use(session({
     secret: "0xZwP44QiUeeWjjq3f39",
@@ -40,6 +38,10 @@ app.use(session({
         secure: process.env.NODE_ENV === 'production',
     }
 }));
+
+app.use('/user', user);
+
+app.use('/place', place);
 
 app.listen(port, () => {
     console.log(`Server is running at port ${port}`);
