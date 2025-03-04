@@ -70,7 +70,8 @@ describe('Testing user/ping-render', () => {
 
 describe('Testing user/signUp', () => {
 
-    let userId;
+    let userId1;
+    let userId2;
 
     it("Testing Positive Case of User Sign Up", async function () {
         const testUser = {
@@ -92,19 +93,33 @@ describe('Testing user/signUp', () => {
         expect(response.body).to.have.property("message", "User signed up successfully");
         expect(response.body).to.have.property("userId").that.is.a("number");
 
-        userId = response.body.userId;
+        userId1 = response.body.userId;
+    });
+
+    it("Testing Negative Case of User Sign Up Duplicate Email", async function () {
+        const testUser = {
+            first_name: "Johnathan",
+            last_name: "Adoe",
+            email: "johndoe@example.com",
+            password: "Somepass2",
+        };
+
+        const response = await supertest(app)
+            .post("/user/signUp")
+            .send(testUser)
+            .set("Accept", "application/json");
+
+        console.log("API Response:", response.body);
+
+        expect(response.status).to.equal(500);
+
+        userId2 = response.body.userId;
     });
 
     after(async function () {
 
-        const body = {
-            id: userId
-        };
+        await supertest(app).delete(`/user/${userId1}`).send({});
+        await supertest(app).delete(`/user/${userId2}`).send({});
 
-        const response = await supertest(app)
-            .delete(`/user/`)
-            .send(body);
-
-        console.log("Deleted:", response.body);
     });
 });
