@@ -150,4 +150,22 @@ user.get("/:id", (req, res) => {
     );
 });
 
+user.delete("/:id", (req, res) => {
+    connection.execute(
+        "delete from user_information where user_id=?",
+        [req.params.id],
+        function (err, result) {
+            if (err) {
+                res.json(err.message);
+            } else {
+                res.json({
+                    status: 200,
+                    message: "User deleted successfully",
+                    data: id,
+                });
+            }
+        }
+    );
+});
+
 export default user;
