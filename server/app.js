@@ -1,57 +1,30 @@
-import bodyParser from "body-parser";
-import { connection } from './database/database.js';
-import cors from "cors";
-import express from "express";
-import session from "express-session";
-import MySQLStore from 'express-mysql-session';
-import user from "./routes/user.js";
-import place from "./routes/place.js"
-const app = express();
-const port = 8080;
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './components/HomePage/HomePage';
+import SignUp from './components/SignUp/SignUp'
+import Header from './shared/Header/Header';
+import SearchFilter from './components/SearchFilter/SearchFilter'
+import Places from './components/Places/Places'
+import Profile from './components/Profile/Profile';
+import SignIn from './components/SignIn/SignIn';
+import Reset from './components/Reset/Reset';
 
-const MySQLStoreSession = MySQLStore(session);
-const sessionStore = new MySQLStoreSession({}, connection, (err) => {
-    if (err) console.error('Session Store Error:', err);
-});
-
-const myLogger = function (req, res, next) {
-    console.log("Calling Api");
-    next();
-    console.log("Api calling has done");
+function App() {
+    return (
+        <Router>
+            <Header />
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/searchfilter" element={<SearchFilter />} />
+                <Route path="/places" element={<Places />} />
+                <Route path="/profile/:id" element={<Profile />} />
+                <Route path="/profile/" element={<Profile />} />
+                <Route path="/signin" element={<SignIn />} />
+                <Route path="/reset" element={<Reset />} />
+            </Routes>
+        </Router>
+    );
 }
 
-app.use(myLogger);
-app.use(bodyParser.json());
-
-app.use(cors({
-    origin: "https://productive-places.web.app",
-    methods: ["GET", "POST", "PUT"],
-    allowedHeaders: ["Content-Type"],
-    credentials: true,
-    exposedHeaders: ["Set-Cookie"],
-}));
-
-app.use(session({
-    secret: "0xZwP44QiUeeWjjq3f39",
-    resave: false,
-    saveUninitialized: false,
-    store: sessionStore,
-    cookie: {
-        maxAge: 86400000,
-        httpOnly: true,
-        secure: true,
-        sameSite: 'None',
-        path: '/',
-    },
-    name: 'connect.sid',
-}));
-
-app.use('/user', user);
-
-app.use('/place', place);
-
-app.listen(port, () => {
-    console.log(`Server is running at port ${port}`);
-});
-
-export default app;
+export default App;

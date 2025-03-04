@@ -22,15 +22,17 @@ export default function SignIn() {
         body: formBody,
         headers: {
           'Content-Type': 'application/json'
-        },
-        credentials: 'include'
+        }
       });
 
       const data = await result.json();
 
       if (data.status == 200) {
+        console.log(data);
 
-        navigate(`/profile`);
+        const id = data.data[0].user_id;
+
+        navigate(`/profile/${id}`);
 
       } else {
         alert('Email or password is incorrect');
