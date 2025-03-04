@@ -1,4 +1,5 @@
 import bodyParser from "body-parser";
+import { connection } from './database/database.js';
 import cors from "cors";
 import express from "express";
 import session from "express-session";
