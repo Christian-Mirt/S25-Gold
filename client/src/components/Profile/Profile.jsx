@@ -25,16 +25,14 @@ function Profile() {
   }
 
   const getUser = async () => {
-    const response = await fetch(import.meta.env.VITE_API_KEY + `/auth/session`, {
+
+    const response = await fetch(import.meta.env.VITE_API_KEY + '/user/auth/session', {
       credentials: 'include'
     });
 
     const result = await response.json();
 
-    console.log(result);
-    console.log(result.data);
-
-    if (response.ok) {
+    if (result.status == 200) {
       setUser(result.data);
     } else {
       console.error("Error fetching user:", result);
