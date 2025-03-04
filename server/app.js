@@ -10,7 +10,9 @@ const app = express();
 const port = 8080;
 
 const MySQLStoreSession = MySQLStore(session);
-const sessionStore = new MySQLStoreSession({}, connection);
+const sessionStore = new MySQLStoreSession({}, connection, (err) => {
+    if (err) console.error('Session Store Error:', err);
+});
 
 const myLogger = function (req, res, next) {
     console.log("Calling Api");
