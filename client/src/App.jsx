@@ -8,6 +8,7 @@ import Places from './components/Places/Places'
 import Profile from './components/Profile/Profile';
 import SignIn from './components/SignIn/SignIn';
 import Reset from './components/Reset/Reset';
+import PhotoUpload from './components/PhotoUpload/PhotoUpload';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/profile/" element={<Profile />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/reset" element={<Reset />} />
+        <Route path="/upload" element={<PhotoUpload />} />
       </Routes>
     </Router>
   );

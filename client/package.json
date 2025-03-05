@@ -12,6 +12,7 @@
     "build-and-deploy": "vite build && firebase deploy"
   },
   "dependencies": {
+    "axios": "^1.8.1",
     "firebase-tools": "^13.29.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
