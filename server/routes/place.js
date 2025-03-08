@@ -1,14 +1,14 @@
 import { Router } from "express";
-import { connection } from "../database/database.js";
+import { pool } from "../database/database.js";
 const place = Router();
 
 place.get("/tps", (req, res) => {
-    connection.execute(
-        "select count(*) as tp from places",
-        [],
-        function (err, result) {
+    pool.execute(
+        "SELECT count(*) AS tp FROM places", 
+        [], 
+        (err, result) => {
             if (err) {
-                res.json(err.message);
+                res.json({ error: err.message });
             } else {
                 res.json({
                     status: 200,
@@ -21,12 +21,12 @@ place.get("/tps", (req, res) => {
 });
 
 place.get("/catalogs", (req, res) => {
-    connection.execute(
+    pool.execute(
         "SELECT * FROM places",
-        [],
-        function (err, result) {
+        [], 
+        (err, result) => {
             if (err) {
-                res.json(err.message);
+                res.json({ error: err.message });
             } else {
                 res.json({
                     status: 200,
@@ -39,14 +39,14 @@ place.get("/catalogs", (req, res) => {
 });
 
 place.get("/reviews", (req, res) => {
-    const { place_id } = req.query; // place_id is in url parameters
+    const { place_id } = req.query; 
 
-    connection.execute(
+    pool.execute(
         "SELECT r.*, u.first_name, u.last_name, u.profile_photo FROM reviews r LEFT JOIN user_information u ON r.user_id = u.user_id WHERE place_id = ?",
         [place_id],
-        function (err, result) {
+        (err, result) => {
             if (err) {
-                res.json(err.message + 'placeId = ' + place_id);
+                res.json({ error: err.message + ' placeId = ' + place_id });
             } else {
                 res.json({
                     status: 200,
@@ -59,14 +59,13 @@ place.get("/reviews", (req, res) => {
 });
 
 place.get("/amenities", (req, res) => {
-    const { place_id } = req.query; // place_id is in url parameters
+    const { place_id } = req.query; 
 
-    connection.execute(
-        "SELECT * FROM amenities WHERE amenity_id = ?", // I guess for now the id is the same as the place id
-        [place_id],
-        function (err, result) {
+    pool.execute(
+        "SELECT * FROM amenities WHERE place_id = ?",
+        (err, result) => {
             if (err) {
-                res.json(err.message + 'placeId = ' + place_id);
+                res.json({ error: err.message + ' placeId = ' + place_id });
             } else {
                 res.json({
                     status: 200,
