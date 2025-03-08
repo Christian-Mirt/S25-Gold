@@ -1,25 +1,29 @@
 import { Router } from "express";
-import { connection } from "../database/database.js";
+import { pool } from "../database/database.js";
 const reset = Router();
 
 reset.put("/generateNewPass", (req, res) => {
+    const { password, email } = req.body;
 
-    connection.execute(
-        "update user_information set password=? where email=?",
-        [req.body.password, req.body.email],
-        function (err, result) {
+    pool.query(
+        "UPDATE user_information SET password=? WHERE email=?",
+        [password, email],
+        (err, result) => {
             if (err) {
-                res.json(err.message);
+
+
+
             } else {
+
                 if (result.affectedRows > 0) {
-                    res.json({
+                    return res.json({
                         status: 200,
-                        message: "Created new password",
+                        message: "Password updated successfully",
                         data: result,
-                    });
-                } else {
-                    res.json({
-                        status: 401,
+                    })
+
+                    return res.status(404).json({
+                        status: 404,
                         message: "No accounts found",
                         data: result,
                     });
