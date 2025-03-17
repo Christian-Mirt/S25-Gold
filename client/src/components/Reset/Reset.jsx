@@ -8,48 +8,36 @@ function Reset()
     const [enteredEmail, setEmail] = useState("");
     const [newPassword, setNewPassword] = useState('');
 
-    const handleReset = async (e) => {
-        e.preventDefault();
+  const handleReset = async (event) => {
+    event.preventDefault();
 
-        if (enteredEmail == "") {
-            alert("Please enter a valid email address");
-            return;
-          }
+    if (enteredEmail == "") {
+      alert("Please enter a valid email address");
+      return;
+    }
 
-          if (newPassword == "") {
-            alert("Please enter a valid password");
-            return;
-          }
+    const formBody = JSON.stringify({
+      email: enteredEmail,
+    })
 
-        const formBody = JSON.stringify({
-          email: enteredEmail,
-          password: newPassword
-        })
+    const result = await fetch(import.meta.env.VITE_API_KEY + '/reset/generateNewPass', {
+      method: "PUT",
+      body: formBody,
+      headers: {
+        'content-type': 'application/json'
+      }
+    });
 
-        try {
-            const result = await fetch(import.meta.env.VITE_API_KEY + '/reset/generateNewPass', {
-              method: 'PUT',
-              body: formBody,
-              headers: {
-                'content-type': 'application/json'
-              }
-            });
-        
-        const data = await result.json();
+    const data = await result.json();
 
-        if (data.status == 200) {
-            console.log(data);
-      
-              navigate(`/signin`);
-      
-            } else {
-              alert('Email or password is incorrect');
-            }
-          } catch (error) {
-            console.error('Error changing password:', error);
-            alert('Something went wrong. Please try again.');
-          }
-};
+    console.log(data);
+
+    if (data.status == 200) {
+      alert("Please check your email!");
+    } else {
+      alert("No accounts found");
+    }
+  };
 
     return (
         <>
