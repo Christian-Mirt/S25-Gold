@@ -58,6 +58,26 @@ place.get("/reviews", (req, res) => {
     );
 });
 
+place.post("/reviews", (req, res) => {
+    const { place, content, rating, user_id, place_id } = req.body;
+
+    pool.execute(
+        "INSERT INTO reviews (place, content, rating, user_id, place_id) VALUES (?, ?, ?, ?, ?)",
+        [place, content, rating, user_id, place_id],
+        (err, result) => {
+            if (err) {
+                res.json({ error: err.message });
+            } else {
+                res.json({
+                    status: 200,
+                    message: "Review submitted successfully",
+                    data: result,
+                });
+            }
+        }
+    );
+});
+
 place.get("/amenities", (req, res) => {
     const { place_id } = req.query; 
 

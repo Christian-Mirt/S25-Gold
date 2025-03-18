@@ -9,6 +9,10 @@ function Profile() {
   const navigate = useNavigate();
   const { id } = useParams();
   const profilePicRef = useRef(null);
+  const [reviewPlace, setReviewPlace] = useState('');
+  const [reviewContent, setReviewContent] = useState('');
+  const [rating, setRating] = useState(0);
+  const { placeId } = useParams();
 
   // Function to fetch user data
   const getUser = async (userId) => {
@@ -44,9 +48,28 @@ function Profile() {
 
 
   const handleReviewSubmit = async (e) => {
+    e.preventDefault();
+    const reviewData = {
+      place: reviewPlace,
+      content: reviewContent,
+      rating: rating,
+      user_id: id,
+      place_id: placeId,
+    }
     try {
+      const response = await fetch(`${import.meta.env.VITE_API_KEY}/reviews`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reviewData),
+      });
+
       if (response.ok) {
         alert('Review submitted successfully!');
+        setReviewPlace('');
+        setReviewContent('');
+        setRating(0);
       } else {
         console.error('Error submitting review:', await response.json());
       }
@@ -98,10 +121,12 @@ function Profile() {
         <h2>Submit a Review</h2>
         <form onSubmit={handleReviewSubmit}>
           <div>
-            <label htmlFor="reviewTitle">Place:</label>
+            <label htmlFor="reviewPlace">Place:</label>
             <input
               type="text"
-              id="reviewTitle"
+              id="reviewPlace"
+              value={reviewPlace}
+              onChange={(e) => setReviewPlace(e.target.value)}
               required
             />
           </div>
@@ -109,6 +134,8 @@ function Profile() {
             <label htmlFor="reviewContent">Content:</label>
             <textarea
               id="reviewContent"
+              value={reviewContent}
+              onChange={(e) => setReviewContent(e.target.value)}
               required
             />
           </div>
@@ -117,6 +144,8 @@ function Profile() {
             <input
               type="number"
               id="rating"
+              value={rating}
+              onChange={(e) => setRating(parseInt(e.target.value))}
               min="0"
               max="5"
               required
