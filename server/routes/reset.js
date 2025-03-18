@@ -2,7 +2,7 @@ import { Router } from "express";
 import { pool } from "../database/database.js";
 const reset = Router();
 
-user.put("/generateNewPass", (req, res) => {
+reset.put("/generateNewPass", (req, res) => {
 
   pool.execute(
     "UPDATE user_information SET password=? WHERE email=?",
