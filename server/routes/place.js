@@ -59,11 +59,11 @@ place.get("/reviews", (req, res) => {
 });
 
 place.post("/reviews", (req, res) => {
-    const { place, content, rating, user_id, place_id } = req.body;
+    const { place_id, user_id, num_stars, comment, place } = req.body;
 
     pool.execute(
         "INSERT INTO reviews (place, content, rating, user_id, place_id) VALUES (?, ?, ?, ?, ?)",
-        [place, content, rating, user_id, place_id],
+        [place_id, user_id, num_stars, comment, place],
         (err, result) => {
             if (err) {
                 res.json({ error: err.message });

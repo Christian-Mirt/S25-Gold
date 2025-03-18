@@ -12,7 +12,6 @@ function Profile() {
   const [reviewPlace, setReviewPlace] = useState('');
   const [reviewContent, setReviewContent] = useState('');
   const [rating, setRating] = useState(0);
-  const { placeId } = useParams();
 
   // Function to fetch user data
   const getUser = async (userId) => {
@@ -50,12 +49,13 @@ function Profile() {
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
     const reviewData = {
-      place: reviewPlace,
-      content: reviewContent,
-      rating: rating,
-      user_id: id,
       place_id: placeId,
-    }
+      user_id: id,
+      num_stars: rating,
+      comment: reviewContent,
+      place: reviewPlace,
+    };
+    
     try {
       const response = await fetch(`${import.meta.env.VITE_API_KEY}/reviews`, {
         method: 'POST',
@@ -146,7 +146,7 @@ function Profile() {
               id="rating"
               value={rating}
               onChange={(e) => setRating(parseInt(e.target.value))}
-              min="0"
+              min="1"
               max="5"
               required
             />
