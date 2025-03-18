@@ -26,7 +26,7 @@ const PhotoUpload = ({ userId }) => {
     formData.append("file", selectedPhoto);
     formData.append("user_id", userId); 
     try {
-      const response = await axios.post("http://localhost:8080/upload", formData, {
+      const response = await axios.post(import.meta.env.VITE_API_KEY + "/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data", 
         },
