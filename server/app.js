@@ -3,6 +3,7 @@ import cors from "cors";
 import express from "express";
 import user from "./routes/user.js";
 import place from "./routes/place.js";
+import reset from "./routes/reset.js";
 import multer from "multer";
 import { pool } from './database/database.js'; // MySQL connection pool
 import cloudinary from './utils/CloudinaryConfig.js'; // Cloudinary configuration
@@ -36,6 +37,7 @@ app.use(myLogger);
 // Routes
 app.use("/user", user);
 app.use("/place", place);
+app.use("/reset", reset);
 
 // Multer configuration to store photos in memory
 const storage = multer.memoryStorage();
