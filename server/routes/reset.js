@@ -4,7 +4,7 @@ const reset = Router();
 
 reset.put("/generateNewPass", (req, res) => {
 
-  pool.execute(
+  connection.execute(
     "UPDATE user_information SET password=? WHERE email=?",
     [req.body.password, req.body.email],
     (err, result) => {
