@@ -173,7 +173,7 @@ function Places() {
                   <td>{place.city}: {place.address}</td>
                   <td>{place.hours ? place.hours : 'Hours not found'}</td>
                   <div className="hearts">
-                    <span className="heart" onClick={(e) => { e.stopPropagation(); addHeart(place.place_id); }} style={{ cursor: 'pointer', color: favoritePlaces.includes(place.place_id) ? 'red' : 'grey' }}>
+                    <span className="heart" onClick={(e) => { e.stopPropagation(); addHeart(place.place_id); navigate(`/favorites/${id}`)}} style={{ cursor: 'pointer', color: favoritePlaces.includes(place.place_id) ? 'red' : 'grey' }}>
                       {favoritePlaces.includes(place.place_id) ? '❤️' : '🤍'}
                     </span>
                   </div>

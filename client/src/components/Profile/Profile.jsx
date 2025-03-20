@@ -87,6 +87,10 @@ function Profile() {
     navigate(`/favorites/${id}`);
   }
 
+  const handlePlaces = async (e) => {
+    navigate(`/places/${id}`);
+  }
+
 
   useEffect(() => {
     if (!id) {
@@ -114,6 +118,7 @@ function Profile() {
           />
           {user ? `Welcome, ${user.first_name}!` : "Please login"}
         </h1>
+        <a href="#" className="places" onClick={handlePlaces}>All places</a><br /><br />
         <a href="#" className="favs" onClick={handleFavorites}>Your favorites</a><br /><br />
         <a href="#" className="reviews">Your Reviews</a><br /><br />
         <a href="#" className="prefs">Your Preferences</a><br /><br />
