@@ -1,0 +1,13 @@
+h1{
+    color: white
+}
+
+.favorites{
+    flex: 3;
+    background-color:rgba(0,0,0,0.4);
+    color:white;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100vh - 100px);
+    text-align: center;
+}

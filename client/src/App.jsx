@@ -25,7 +25,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/reset/:id" element={<Reset />} />
         <Route path="/upload" element={<PhotoUpload />} />
-        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/favorites/:id" element={<Favorites />} />
       </Routes>
     </Router>
   );
