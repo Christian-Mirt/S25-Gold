@@ -140,6 +140,7 @@ function Places() {
                 <th onClick={handleSortAlphabetically} style={{ cursor: 'pointer' }}>Place {alphabeticalOrder === 'asc' ? '↑' : '↓'}</th>
                 <th>Location</th>
                 <th>Hours</th>
+                <th>Favorites</th>
               </tr>
             </thead>
             <tbody>
