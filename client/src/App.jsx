@@ -9,6 +9,7 @@ import Profile from './components/Profile/Profile';
 import SignIn from './components/SignIn/SignIn';
 import Reset from './components/Reset/Reset';
 import PhotoUpload from './components/PhotoUpload/PhotoUpload';
+import Favorites from './components/Favorites/Favorites';
 
 function App() {
   return (
@@ -22,8 +23,9 @@ function App() {
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/profile/" element={<Profile />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/reset" element={<Reset />} />
+        <Route path="/reset/:id" element={<Reset />} />
         <Route path="/upload" element={<PhotoUpload />} />
+        <Route path="/favorites" element={<Favorites />} />
       </Routes>
     </Router>
   );

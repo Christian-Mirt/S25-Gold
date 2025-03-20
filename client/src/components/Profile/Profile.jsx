@@ -80,7 +80,11 @@ function Profile() {
 
 
   const handleResetPass = async (e) => {
-    navigate(`/reset`);
+    navigate(`/reset/${id}`);
+  }
+
+  const handleFavorites = async (e) => {
+    navigate(`/favorites/${id}`);
   }
 
 
@@ -110,7 +114,7 @@ function Profile() {
           />
           {user ? `Welcome, ${user.first_name}!` : "Please login"}
         </h1>
-        <a href="#" className="favs">Your favorites</a><br /><br />
+        <a href="#" className="favs" onClick={handleFavorites}>Your favorites</a><br /><br />
         <a href="#" className="reviews">Your Reviews</a><br /><br />
         <a href="#" className="prefs">Your Preferences</a><br /><br />
         <PhotoUpload userId={id} /><br />
