@@ -19,6 +19,29 @@ function Places() {
   const [alphabeticalOrder, setAlphabeticalOrder] = useState('asc');
   const [favoritePlaces, setFavoritePlaces] = useState([]);
 
+  const [user, setUser] = useState(null); //for user id
+
+  //fetch user data
+  const getUser = async (userId) => {
+    try {
+      const response = await fetch(import.meta.env.VITE_API_KEY + `/user/${userId}`);
+      const result = await response.json();
+
+      if (response.ok) {
+        setUser(result.data[0]);
+      } else {
+        console.error("Error fetching user:", result);
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+    }
+  };
+
+  useEffect(() => {
+      const userId = localStorage.getItem('userId');
+      getUser(userId);
+  }, [navigate]);
+
   const getPlaces = async () => {
     const url = import.meta.env.VITE_API_KEY + '/place/catalogs';
     const response = await fetch(url, {
@@ -142,7 +165,7 @@ function Places() {
       <div className="places-catalog">
         <h1>Places Catalog</h1>
         <p><b>Number of places: </b> {filteredPlaces.length}</p>
-        <hr width="100%" size="2" color="white" noshade></hr>
+        <hr width="130%" size="2" color="white" noshade></hr>
         {filteredPlaces.length > 0 ? (
           <table>
             <thead>
@@ -173,7 +196,7 @@ function Places() {
                   <td>{place.city}: {place.address}</td>
                   <td>{place.hours ? place.hours : 'Hours not found'}</td>
                   <div className="hearts">
-                    <span className="heart" onClick={(e) => { e.stopPropagation(); addHeart(place.place_id); navigate(`/favorites/${id}`)}} style={{ cursor: 'pointer', color: favoritePlaces.includes(place.place_id) ? 'red' : 'grey' }}>
+                    <span className="heart" onClick={(e) => { e.stopPropagation(); addHeart(place.place_id); navigate(`/favorites/${user?.id}`)}} style={{ cursor: 'pointer', color: favoritePlaces.includes(place.place_id) ? 'red' : 'grey' }}>
                       {favoritePlaces.includes(place.place_id) ? '❤️' : '🤍'}
                     </span>
                   </div>
