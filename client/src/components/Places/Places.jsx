@@ -17,6 +17,7 @@ function Places() {
   const [filteredPlaces, setFilteredPlaces] = useState([]);
   const [sortOrder, setSortOrder] = useState('asc');
   const [alphabeticalOrder, setAlphabeticalOrder] = useState('asc');
+  const [favoritePlaces, setFavoritePlaces] = useState([]);
 
   const getPlaces = async () => {
     const url = import.meta.env.VITE_API_KEY + '/place/catalogs';
@@ -108,6 +109,16 @@ function Places() {
     setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
   };
 
+  const addHeart = (placeId) => {
+    setFavoritePlaces((prevFavorites) => {
+      if (prevFavorites.includes(placeId)) {
+        return prevFavorites.filter((id) => id !== placeId);
+      } else {
+        return [...prevFavorites, placeId];
+      }
+    });
+  };
+
   const handleSortAlphabetically = () => {
     const sortedPlaces = [...filteredPlaces].sort((a, b) => {
       if (alphabeticalOrder === 'asc') {
@@ -161,6 +172,11 @@ function Places() {
                   <td>{place.name}</td>
                   <td>{place.city}: {place.address}</td>
                   <td>{place.hours ? place.hours : 'Hours not found'}</td>
+                  <div className="hearts">
+                    <span className="heart" onClick={(e) => { e.stopPropagation(); addHeart(place.place_id); }} style={{ cursor: 'pointer', color: favoritePlaces.includes(place.place_id) ? 'red' : 'grey' }}>
+                      {favoritePlaces.includes(place.place_id) ? '❤️' : '🤍'}
+                    </span>
+                  </div>
                 </tr>
               ))}
             </tbody>
