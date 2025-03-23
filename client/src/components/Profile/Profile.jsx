@@ -81,6 +81,8 @@ function Profile() {
       num_stars: rating,
       comment: reviewContent,
     };
+
+    console.log("Submitting review:", reviewData);
     
     try {
       const response = await fetch(`${import.meta.env.VITE_API_KEY}/reviews`, {
@@ -91,13 +93,16 @@ function Profile() {
         body: JSON.stringify(reviewData),
       });
 
+    const result = await response.json();
+    console.log("Response from server:", result);
+
       if (response.ok) {
         alert('Review submitted successfully!');
         setReviewPlace('');
         setReviewContent('');
         setRating(0);
       } else {
-        console.error('Error submitting review:', await response.json());
+        console.error('Error submitting review:', result);
       }
     } catch (error) {
       console.error('Fetch error:', error);
