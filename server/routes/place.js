@@ -59,11 +59,13 @@ place.get("/reviews", (req, res) => {
 });
 
 place.post("/reviews", (req, res) => {
-    const { place_id, user_id, num_stars, comment, place } = req.body;
+    const { place_id, user_id, num_stars, comment } = req.body;
+
+    const date = new Date().toISOString().split('T')[0];
 
     pool.execute(
-        "INSERT INTO reviews (place, content, rating, user_id, place_id) VALUES (?, ?, ?, ?, ?)",
-        [place_id, user_id, num_stars, comment, place],
+        "INSERT INTO reviews (place_id, user_id, num_stars, comment, date) VALUES (?, ?, ?, ?, ?)",
+        [place_id, user_id, num_stars, comment, date],
         (err, result) => {
             if (err) {
                 res.json({ error: err.message });

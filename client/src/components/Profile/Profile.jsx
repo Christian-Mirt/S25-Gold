@@ -12,6 +12,7 @@ function Profile() {
   const [reviewPlace, setReviewPlace] = useState('');
   const [reviewContent, setReviewContent] = useState('');
   const [rating, setRating] = useState(0);
+  const [placeId, setPlaceId] = useState(null);
 
   // Function to fetch user data
   const getUser = async (userId) => {
@@ -48,12 +49,17 @@ function Profile() {
 
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
+
+    if (!placeId) {
+      alert("Please select a valid place.");
+      return;
+    }
+
     const reviewData = {
       place_id: placeId,
       user_id: id,
       num_stars: rating,
       comment: reviewContent,
-      place: reviewPlace,
     };
     
     try {
@@ -101,6 +107,26 @@ function Profile() {
       getProfilePic(id); 
     }
   }, [id, navigate]);
+
+  useEffect(() => {
+    if (reviewPlace) {
+      fetchPlaceId(reviewPlace);
+    }
+  }, [reviewPlace]);
+  
+  const fetchPlaceId = async (placeName) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_KEY}/places?name=${placeName}`);
+      const data = await response.json();
+      if (response.ok && data.length > 0) {
+        setPlaceId(data[0].id);
+      } else {
+        console.error('Place not found');
+      }
+    } catch (error) {
+      console.error('Error fetching place:', error);
+    }
+  };
 
   // Default profile image
   const profileImageUrl = profilePicUrl || "/default-profile.png"; 
