@@ -97,6 +97,7 @@ function Profile() {
     console.log("Response from server:", result);
 
       if (response.ok) {
+        console.log("Review submitted successfully!");
         alert('Review submitted successfully!');
         setReviewPlace('');
         setReviewContent('');
