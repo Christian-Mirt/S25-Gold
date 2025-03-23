@@ -85,7 +85,7 @@ function Profile() {
     console.log("Submitting review:", reviewData);
     
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_KEY}/reviews`, {
+      const response = await fetch(`${import.meta.env.VITE_API_KEY}/place/reviews`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -104,9 +104,11 @@ function Profile() {
         setRating(0);
       } else {
         console.error('Error submitting review:', result);
+        alert('Failed to submit review. Please try again.');
       }
     } catch (error) {
       console.error('Fetch error:', error);
+      alert('An error occurred while submitting the review. Please check your connection.');
     }
   };
 
