@@ -63,7 +63,7 @@ place.post("/reviews", (req, res) => {
     const date = new Date().toISOString().split('T')[0];
 
     pool.execute(
-        "INSERT INTO reviews (place, content, rating, user_id, place_id) VALUES (?, ?, ?, ?, ?)",
+        "INSERT INTO reviews (place_id, user_id, num_stars, comment, date) VALUES (?, ?, ?, ?, ?)",
         [place_id, user_id, num_stars, comment, date],
         (err, result) => {
             if (err) {

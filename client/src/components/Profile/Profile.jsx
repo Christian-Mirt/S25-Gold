@@ -13,34 +13,29 @@ function Profile() {
   const [reviewContent, setReviewContent] = useState('');
   const [rating, setRating] = useState(0);
   const [placeId, setPlaceId] = useState(null);
+  const [places, setPlaces] = useState([]);
 
   useEffect(() => {
-    if (reviewPlace) {
-      fetchPlaceId(reviewPlace);
-    }
-  }, [reviewPlace]);
-  
-  const fetchPlaceId = async (placeName) => {
-    try {
-      console.log('Fetching place ID for:', placeName);
-      const response = await fetch(`${import.meta.env.VITE_API_KEY}/places?name=${encodeURIComponent(placeName)}`);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+    const fetchPlaces = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_KEY}/place/catalogs`);
         const data = await response.json();
-        console.log('Place fetch response:', data);
-        if (data.data && data.data.length > 0) {
-          console.log('Place found:', data.data[0]);
-          setPlaceId(data.data[0].id);
-        } else {
-          console.error('Place not found');
-          setPlaceId(null);
+        if (data.status === 200) {
+          setPlaces(data.data);
         }
       } catch (error) {
-        console.error('Error fetching place:', error);
-        setPlaceId(null);
+        console.error('Error fetching places:', error);
       }
     };
+    fetchPlaces();
+  }, []);
+
+  const findPlaceId = (placeName) => {
+    const matchedPlace = places.find(place => 
+      place.name.toLowerCase() === placeName.toLowerCase()
+    );
+    return matchedPlace ? matchedPlace.place_id : null;
+  };
 
   // Function to fetch user data
   const getUser = async (userId) => {
@@ -78,7 +73,9 @@ function Profile() {
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
 
-    if (!placeId) {
+    const foundPlaceId = findPlaceId(reviewPlace);
+
+    if (!foundPlaceId) {
       alert("Please select a valid place.");
       return;
     }
@@ -179,8 +176,14 @@ function Profile() {
               id="reviewPlace"
               value={reviewPlace}
               onChange={(e) => setReviewPlace(e.target.value)}
+              list="placesList"
               required
             />
+            <datalist id="placesList">
+            {places.map((place) => (
+                <option key={place.place_id} value={place.name} />
+              ))}
+            </datalist>
           </div>
           <div>
             <label htmlFor="reviewContent">Content:</label>
