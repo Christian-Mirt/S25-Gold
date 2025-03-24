@@ -22,12 +22,15 @@ function Profile() {
   
   const fetchPlaceId = async (placeName) => {
     try {
+      console.log('Fetching place ID for:', placeName);
       const response = await fetch(`${import.meta.env.VITE_API_KEY}/places?name=${encodeURIComponent(placeName)}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
+        console.log('Place fetch response:', data);
         if (data.data && data.data.length > 0) {
+          console.log('Place found:', data.data[0]);
           setPlaceId(data.data[0].id);
         } else {
           console.error('Place not found');

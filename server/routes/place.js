@@ -84,8 +84,8 @@ place.get("/places", (req, res) => {
     const { name } = req.query;
     
     pool.execute(
-        "SELECT * FROM places WHERE name = ?",
-        [{name}],
+        "SELECT * FROM places WHERE name LIKE ?",
+        [`%${name}%`],
         (err, result) => {
             if (err) {
                 res.json({ error: err.message });
