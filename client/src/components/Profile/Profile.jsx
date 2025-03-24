@@ -22,17 +22,22 @@ function Profile() {
   
   const fetchPlaceId = async (placeName) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_KEY}/places?name=${placeName}`);
-      const data = await response.json();
-      if (response.ok && data.length > 0) {
-        setPlaceId(data[0].id);
-      } else {
-        console.error('Place not found');
+      const response = await fetch(`${import.meta.env.VITE_API_KEY}/places?name=${encodeURIComponent(placeName)}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        if (data.data && data.data.length > 0) {
+          setPlaceId(data.data[0].id);
+        } else {
+          console.error('Place not found');
+          setPlaceId(null);
+        }
+      } catch (error) {
+        console.error('Error fetching place:', error);
+        setPlaceId(null);
       }
-    } catch (error) {
-      console.error('Error fetching place:', error);
-    }
-  };
+    };
 
   // Function to fetch user data
   const getUser = async (userId) => {
