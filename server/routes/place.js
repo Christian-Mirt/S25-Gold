@@ -60,11 +60,10 @@ place.get("/reviews", (req, res) => {
 
 place.post("/reviews", (req, res) => {
     const { place_id, user_id, num_stars, comment } = req.body;
-
     const date = new Date().toISOString().split('T')[0];
 
     pool.execute(
-        "INSERT INTO reviews (place_id, user_id, num_stars, comment, date) VALUES (?, ?, ?, ?, ?)",
+        "INSERT INTO reviews (place, content, rating, user_id, place_id) VALUES (?, ?, ?, ?, ?)",
         [place_id, user_id, num_stars, comment, date],
         (err, result) => {
             if (err) {
@@ -73,26 +72,6 @@ place.post("/reviews", (req, res) => {
                 res.json({
                     status: 200,
                     message: "Review submitted successfully",
-                    data: result,
-                });
-            }
-        }
-    );
-});
-
-place.get("/places", (req, res) => {
-    const { name } = req.query;
-    
-    pool.execute(
-        "SELECT * FROM places WHERE name LIKE ?",
-        [`%${name}%`],
-        (err, result) => {
-            if (err) {
-                res.json({ error: err.message });
-            } else {
-                res.json({
-                    status: 200,
-                    message: "Places retrieved successfully",
                     data: result,
                 });
             }
