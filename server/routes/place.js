@@ -79,6 +79,26 @@ place.post("/reviews", (req, res) => {
     );
 });
 
+place.get("/places", (req, res) => {
+    const { name } = req.query;
+    
+    pool.execute(
+        "SELECT * FROM places WHERE name LIKE ?",
+        [`%${name}%`],
+        (err, result) => {
+            if (err) {
+                res.json({ error: err.message });
+            } else {
+                res.json({
+                    status: 200,
+                    message: "Places retrieved successfully",
+                    data: result,
+                });
+            }
+        }
+    );
+});
+
 place.get("/amenities", (req, res) => {
     const { place_id } = req.query; 
 
