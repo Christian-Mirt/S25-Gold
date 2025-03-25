@@ -31,9 +31,20 @@ function Profile() {
   }, []);
 
   const findPlaceId = (placeName) => {
-    const matchedPlace = places.find(place => 
+    let matchedPlace = places.find(place => 
       place.name.toLowerCase() === placeName.toLowerCase()
     );
+
+    if (!matchedPlace) {
+      matchedPlace = places.find(place => 
+        place.name.toLowerCase().includes(placeName.toLowerCase())
+      );
+    }
+
+    console.log('Input place name:', placeName);
+    console.log('All places:', places);
+    console.log('Matched place:', matchedPlace);
+
     return matchedPlace ? matchedPlace.place_id : null;
   };
 
