@@ -14,6 +14,7 @@ function Profile() {
   const [rating, setRating] = useState(0);
   const [placeId, setPlaceId] = useState(null);
   const [places, setPlaces] = useState([]);
+  const [selectedPlaceId, setSelectedPlaceId] = useState(null);
 
   useEffect(() => {
     const fetchPlaces = async () => {
@@ -42,7 +43,6 @@ function Profile() {
     }
 
     console.log('Input place name:', placeName);
-    console.log('All places:', places);
     console.log('Matched place:', matchedPlace);
 
     return matchedPlace ? matchedPlace.place_id : null;
@@ -80,19 +80,30 @@ function Profile() {
     }
   };
 
+  const handlePlaceChange = (e) => {
+    const inputPlace = e.target.value;
+    setReviewPlace(inputPlace);
+
+    const foundPlace = findPlace(inputPlace);
+    if (foundPlace) {
+      setSelectedPlaceId(foundPlace.place_id);
+      console.log('Selected Place ID:', foundPlace.place_id);
+    } else {
+      setSelectedPlaceId(null);
+    }
+  };
+
 
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
 
-    const foundPlaceId = findPlaceId(reviewPlace);
-
-    if (!foundPlaceId) {
+    if (!selectedPlaceId) {
       alert("Please select a valid place.");
       return;
     }
 
     const reviewData = {
-      place_id: placeId,
+      place_id: selectedPlaceId,
       user_id: id,
       num_stars: rating,
       comment: reviewContent,
@@ -118,6 +129,7 @@ function Profile() {
         setReviewPlace('');
         setReviewContent('');
         setRating(0);
+        setSelectedPlaceId(null);
       } else {
         console.error('Error submitting review:', result);
         alert('Failed to submit review. Please try again.');
@@ -186,7 +198,7 @@ function Profile() {
               type="text"
               id="reviewPlace"
               value={reviewPlace}
-              onChange={(e) => setReviewPlace(e.target.value)}
+              onChange={handlePlaceChange}
               list="placesList"
               required
             />
