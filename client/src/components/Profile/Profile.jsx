@@ -31,7 +31,7 @@ function Profile() {
     fetchPlaces();
   }, []);
 
-  const findPlaceId = (placeName) => {
+  const findPlace = (placeName) => {
     let matchedPlace = places.find(place => 
       place.name.toLowerCase() === placeName.toLowerCase()
     );
@@ -45,7 +45,7 @@ function Profile() {
     console.log('Input place name:', placeName);
     console.log('Matched place:', matchedPlace);
 
-    return matchedPlace ? matchedPlace.place_id : null;
+    return matchedPlace;
   };
 
   // Function to fetch user data
