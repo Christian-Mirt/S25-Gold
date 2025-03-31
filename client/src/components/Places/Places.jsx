@@ -142,6 +142,15 @@ function Places() {
     });
   };
 
+  const goToFavorites = (placeId, placeName) => {
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  
+    if (!favorites.some(fav => fav.id === placeId)) {
+      favorites.push({ id: placeId, name: placeName });
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
+  };
+
   const handleSortAlphabetically = () => {
     const sortedPlaces = [...filteredPlaces].sort((a, b) => {
       if (alphabeticalOrder === 'asc') {
@@ -196,7 +205,7 @@ function Places() {
                   <td>{place.city}: {place.address}</td>
                   <td>{place.hours ? place.hours : 'Hours not found'}</td>
                   <div className="hearts">
-                    <span className="heart" onClick={(e) => { e.stopPropagation(); addHeart(place.place_id); navigate(`/favorites/${user?.id}`)}} style={{ cursor: 'pointer', color: favoritePlaces.includes(place.place_id) ? 'red' : 'grey' }}>
+                    <span className="heart" onClick={(e) => { e.stopPropagation(); addHeart(place.place_id); goToFavorites(place.place_id, place.name)}} style={{ cursor: 'pointer', color: favoritePlaces.includes(place.place_id) ? 'red' : 'grey' }}>
                       {favoritePlaces.includes(place.place_id) ? '❤️' : '🤍'}
                     </span>
                   </div>
