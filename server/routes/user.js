@@ -77,30 +77,33 @@ user.post("/signUp", (req, res) => {
 
 user.post("/login", (req, res) => {
   pool.execute(
-    "SELECT * FROM user_information WHERE email=?",
-    [req.body.email],
-    (err, result) => {
-      if (err) {
-        res.json(err.message);
-      } else {
-        if (result[0]) {
-          if (CompareText(req.body.password, result[0].password) || CompareText(req.body.password, result[0].temp_key)) {
-            res.json({
-              status: 200,
-              message: "User logged in successfully!",
-              data: result,
-            });
+      "SELECT * FROM user_information WHERE email=?",
+      [req.body.email],
+      (err, result) => {
+          if (err) {
+              return res.status(500).json({ error: err.message });
           }
-        } else {
-          res.json({
-            status: 401,
-            message: "Wrong username or password",
-          });
-        }
+
+          if (!result[0]) {
+              return res.status(401).json({ message: "Wrong username or password" });
+          }
+
+          const passwordMatches = CompareText(req.body.password, result[0].password);
+          const tempKeyMatches = CompareText(req.body.password, result[0].temp_key);
+
+          if (passwordMatches || tempKeyMatches) {
+              return res.status(200).json({
+                  status: 200,
+                  message: "User logged in successfully!",
+                  data: result,
+              });
+          }
+
+          return res.status(401).json({ message: "Wrong username or password" });
       }
-    }
   );
 });
+
 
 user.put("/reset-password", (req, res) => {
   const tempKey = generateRandomPassword();
