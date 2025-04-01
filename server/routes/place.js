@@ -103,7 +103,7 @@ place.get("/amenities", (req, res) => {
     const { place_id } = req.query; 
 
     pool.execute(
-        "SELECT * FROM amenities WHERE place_id = ?",
+        "SELECT * FROM amenities WHERE amenity_id = ?",
         (err, result) => {
             if (err) {
                 res.json({ error: err.message + ' placeId = ' + place_id });
