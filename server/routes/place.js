@@ -42,7 +42,15 @@ place.get("/reviews", (req, res) => {
     const { place_id } = req.query; 
 
     pool.execute(
-        "SELECT r.*, u.first_name, u.last_name, p.url FROM reviews r LEFT JOIN user_information u ON r.user_id = u.user_id LEFT JOIN photos p ON u.user_id=p.user_id WHERE place_id = ?",
+        `SELECT r.*, u.first_name, u.last_name, p.url 
+            FROM reviews r 
+            LEFT JOIN user_information u ON r.user_id = u.user_id 
+            LEFT JOIN (
+                SELECT user_id, url 
+                FROM photos 
+                GROUP BY user_id  -- Selects the first picture and assumes it's the profile pic
+            ) p ON u.user_id = p.user_id 
+            WHERE r.place_id = ?;`,
         [place_id],
         (err, result) => {
             if (err) {
