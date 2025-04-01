@@ -102,8 +102,13 @@ place.get("/places", (req, res) => {
 place.get("/amenities", (req, res) => {
     const { place_id } = req.query; 
 
+    if (!place_id) {
+        return res.status(400).json({ error: "place_id is required" });
+    }
+
     pool.execute(
         "SELECT * FROM amenities WHERE amenity_id = ?",
+        [place_id],
         (err, result) => {
             if (err) {
                 res.json({ error: err.message + ' placeId = ' + place_id });
