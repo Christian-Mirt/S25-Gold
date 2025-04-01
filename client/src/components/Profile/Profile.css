@@ -47,6 +47,7 @@ p {
   background-color: white;
   border-radius: 50%;
   position: relative;
+  object-fit: cover;
   left: -15px;
 }
 

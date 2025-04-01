@@ -104,7 +104,7 @@ function Profile() {
 
     const reviewData = {
       place_id: selectedPlaceId,
-      user_id: id,
+      user_id: user.user_id,
       num_stars: rating,
       comment: reviewContent,
     };
@@ -142,19 +142,28 @@ function Profile() {
 
 
   const handleResetPass = async (e) => {
-    navigate(`/reset/${id}`);
+    navigate(`/reset/${user.user_id}`);
   }
 
   const handleFavorites = async (e) => {
-    navigate(`/favorites/${id}`);
+    navigate(`/favorites/${user.user_id}`);
   }
 
   const handlePlaces = async (e) => {
-    navigate(`/places/${id}`);
+    navigate(`/places/${user.user_id}`);
+  }
+
+  /** For development and demo purposes. */
+  const handleClearLocal = async () => {
+    localStorage.clear();
+    navigate('/');
   }
 
 
   useEffect(() => {
+    // Try to retrive user Id from local storage
+    const id = localStorage.getItem("userId");
+
     if (!id) {
       alert("Please login to access the profile page!");
       navigate("/signin");
@@ -187,6 +196,7 @@ function Profile() {
         <a href="#" className="prefs">Your Preferences</a><br /><br />
         <PhotoUpload userId={id} /><br />
         <a href="#" className="resetPass" onClick={handleResetPass}>Reset your Password</a><br /><br />
+        <a href="#" className="favs" onClick={handleClearLocal}>Clear Local Storage (For Development)</a><br /><br />
       </div>
 
       <div className="reviewCatalog">

@@ -32,6 +32,9 @@ function SignUp() {
             const data = await response.json();
 
             if (response.ok) {
+                // Add user's Id to local storage
+                localStorage.setItem("userId", data.userId);
+
                 alert('Sign-up successful! Redirecting...');
                 navigate('/searchfilter');
             } else {

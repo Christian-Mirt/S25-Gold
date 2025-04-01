@@ -32,6 +32,9 @@ export default function SignIn() {
 
         const id = data.data[0].user_id;
 
+        // Put the user's Id into local storage
+        localStorage.setItem("userId", id);
+
         navigate(`/profile/${id}`);
 
       } else {
