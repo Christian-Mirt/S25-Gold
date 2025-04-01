@@ -35,6 +35,7 @@ function Reset()
 
     if (data.status == 200) {
       alert("Fixed");
+      navigate('/signin');
     } else {
       alert("No accounts found");
     }
