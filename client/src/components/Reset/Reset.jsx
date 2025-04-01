@@ -18,6 +18,7 @@ function Reset()
 
     const formBody = JSON.stringify({
       email: enteredEmail,
+      password: newPassword
     })
 
     const result = await fetch(import.meta.env.VITE_API_KEY + '/reset/generateNewPass', {
