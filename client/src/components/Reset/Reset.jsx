@@ -34,7 +34,7 @@ function Reset()
     console.log(data);
 
     if (data.status == 200) {
-      alert("Please check your email!");
+      alert("Fixed");
     } else {
       alert("No accounts found");
     }
