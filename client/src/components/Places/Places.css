@@ -56,6 +56,17 @@ tbody tr {
         background-color: rgba(113, 113, 113, 0.4);
     }
 
+.profile-picture {
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    border-radius: 50%;
+    position: relative;
+    object-fit: cover;
+    margin-right: 10px;
+    top: 15px;
+    }
+
 .star-rating {
     position: relative;
     display: inline-block;
@@ -97,4 +108,4 @@ tbody tr {
     .refreshing {
     animation: slideRefresh 0.5s ease-in-out;
     }
-      
+    

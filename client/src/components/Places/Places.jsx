@@ -87,6 +87,8 @@ function Places() {
       console.log(amenities.data[0]);
     } else {
       console.log("Error fetching place details");
+      console.log(placeId);
+      console.log(amenities);
     }
 
     // Get the reviews
@@ -240,7 +242,18 @@ function Places() {
                 <h2>User Reviews</h2>
                 {selectedPlaceReviews.map((review, index) => (
                   <div key={index}>
-                    <h3>{review.first_name + ' ' + review.last_name}</h3>
+                    <h3>
+                    {review.url ? (
+                      <img
+                        src={review.url} 
+                        id="pfp"
+                        // ref={profilePicRef}
+                        className="profile-picture"
+                        alt="Profile"
+                      />
+                    ) : (<p></p>)}
+                      {review.first_name + ' ' + review.last_name}
+                    </h3>
                     <div className="star-rating">
                       <div className="stars">
                         {[...Array(5)].map((_, i) => (
