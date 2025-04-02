@@ -2,6 +2,7 @@ import './Profile.css';
 import PhotoUpload from "../PhotoUpload/PhotoUpload";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useRef, useEffect } from 'react';
+import {authentication} from "../authentication.js";
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -157,8 +158,13 @@ function Profile() {
   const handleClearLocal = async () => {
     localStorage.clear();
     navigate('/');
-  }
+  };
 
+
+    const handleLogout = () => {
+        localStorage.removeItem("userId", id);
+        navigate("/signin");
+    };
 
   useEffect(() => {
     // Try to retrive user Id from local storage
@@ -193,10 +199,10 @@ function Profile() {
         <a href="#" className="places" onClick={handlePlaces}>All places</a><br /><br />
         <a href="#" className="favs" onClick={handleFavorites}>Your favorites</a><br /><br />
         <a href="#" className="reviews">Your Reviews</a><br /><br />
-        <a href="#" className="prefs">Your Preferences</a><br /><br />
         <PhotoUpload userId={id} /><br />
         <a href="#" className="resetPass" onClick={handleResetPass}>Reset your Password</a><br /><br />
         <a href="#" className="favs" onClick={handleClearLocal}>Clear Local Storage (For Development)</a><br /><br />
+        <a href="#" className="logout" onClick={handleLogout}>Logout</a><br /><br />
       </div>
 
       <div className="reviewCatalog">

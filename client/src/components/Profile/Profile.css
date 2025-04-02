@@ -25,7 +25,7 @@ p {
   margin-left: 20px;
 }
 
-.favs, .reviews, .prefs, .resetPass, .input_file, .places {
+.favs, .reviews, .prefs, .resetPass, .input_file, .places, .logout {
   border-radius: 10px;
   width: 80%;
   font-size: 25px;
