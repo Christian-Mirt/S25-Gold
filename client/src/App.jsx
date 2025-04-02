@@ -10,6 +10,7 @@ import SignIn from './components/SignIn/SignIn';
 import Reset from './components/Reset/Reset';
 import PhotoUpload from './components/PhotoUpload/PhotoUpload';
 import Favorites from './components/Favorites/Favorites';
+import Reviews from './components/Reviews/Review';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/reset/:id" element={<Reset />} />
         <Route path="/upload" element={<PhotoUpload />} />
         <Route path="/favorites/:id" element={<Favorites />} />
+        <Route path="/reviews/:id" element={<Reviews />} />
       </Routes>
     </Router>
   );

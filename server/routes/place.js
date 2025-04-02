@@ -131,4 +131,27 @@ place.get("/amenities", (req, res) => {
     );
 });
 
+place.get("/retrieveReviews", (req, res) => {
+    const { user_id } = req.query;
+
+    if (!user_id) {
+        return res.status(400).json({ error: "user_id is required" });
+    }
+
+    pool.execute(
+        `SELECT comment FROM reviews WHERE user_id = ?`,
+        [user_id],
+        (err, result) => {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+            res.json({
+                status: 200,
+                message: "User reviews retrieved successfully",
+                data: result,
+            });
+        }
+    );
+});
+
 export default place;

@@ -159,10 +159,15 @@ function Profile() {
     navigate('/');
   };
 
-
+    /**For Logging out */
     const handleLogout = () => {
         localStorage.removeItem("userId", id);
         navigate("/signin");
+    };
+
+    /**Go to Review Page */
+    const goToreviews = async (e) => {
+        navigate(`/reviews/${user.user_id}`);
     };
 
   useEffect(() => {
@@ -197,7 +202,7 @@ function Profile() {
         </h1>
         <a href="#" className="places" onClick={handlePlaces}>All places</a><br /><br />
         <a href="#" className="favs" onClick={handleFavorites}>Your favorites</a><br /><br />
-        <a href="#" className="reviews">Your Reviews</a><br /><br />
+        <a href="#" className="reviews" onClick={goToreviews}>Your reviews</a><br /><br />
         <PhotoUpload userId={id} /><br />
         <a href="#" className="resetPass" onClick={handleResetPass}>Reset your Password</a><br /><br />
         <a href="#" className="favs" onClick={handleClearLocal}>Clear Local Storage (For Development)</a><br /><br />
