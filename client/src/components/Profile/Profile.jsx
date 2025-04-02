@@ -2,7 +2,6 @@ import './Profile.css';
 import PhotoUpload from "../PhotoUpload/PhotoUpload";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useRef, useEffect } from 'react';
-import {authentication} from "../authentication.js";
 
 function Profile() {
   const [user, setUser] = useState(null);
