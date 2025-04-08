@@ -153,12 +153,6 @@ function Profile() {
     navigate(`/places/${user.user_id}`);
   }
 
-  /** For development and demo purposes. */
-  const handleClearLocal = async () => {
-    localStorage.clear();
-    navigate('/');
-  };
-
     /**For Logging out */
     const handleLogout = () => {
         localStorage.removeItem("userId", id);
@@ -205,7 +199,6 @@ function Profile() {
         <a href="#" className="reviews" onClick={goToreviews}>Your reviews</a><br /><br />
         <PhotoUpload userId={id} /><br />
         <a href="#" className="resetPass" onClick={handleResetPass}>Reset your Password</a><br /><br />
-        <a href="#" className="favs" onClick={handleClearLocal}>Clear Local Storage (For Development)</a><br /><br />
         <a href="#" className="logout" onClick={handleLogout}>Logout</a><br /><br />
       </div>
 
