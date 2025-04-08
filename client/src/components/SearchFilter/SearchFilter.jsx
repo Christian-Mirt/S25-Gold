@@ -6,9 +6,10 @@ function SearchFilter() {
   const navigate = useNavigate();
   const [rating, setRating] = useState('');
   const [wifi, setWifi] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const searchPlace = () =>{
-    navigate(`/places?rating=${rating}&wifi=${wifi}`);
+    navigate(`/places?search=${searchTerm}&rating=${rating}&wifi=${wifi}`);
   }
 
   const handleRatingChange = (event) => {
@@ -19,10 +20,27 @@ function SearchFilter() {
     setWifi(event.target.value); 
   };
 
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      searchPlace();
+    }
+  };
+
   return( 
     <div className='center-vertically'>
       <div className='center-horizontally'>
-        <input type="text" placeholder="Search for a place..." className = "bigSearch"></input>
+        <input 
+          type="text" 
+          placeholder="Search for a place..." 
+          className="bigSearch"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          onKeyPress={handleKeyPress}
+        />
         <h1 className='browseHeader'>Or browse using the filters below</h1>
         <select type="text" placeholder="Rating" className = "rating" value={rating} onChange={handleRatingChange}>
           <option value="" selected disabled>Rating</option>
@@ -37,12 +55,9 @@ function SearchFilter() {
           <option value="1">Option 1</option>
         </select>
         <select type="text" placeholder="Wifi" className = "wifi" value={wifi} onChange={handleWifiChange}>
-          <option value="" selected disabled>Wifi</option>
-          <option value="excellent">Excellent</option>
-          <option value="good">Good</option>
-          <option value="ok">Okay</option>
-          <option value="slow">Slow</option>
-          <option value="really_slow">Really Slow</option>
+          <option value="" selected disabled>Wifi Availability</option>
+          <option value="true">Has WiFi</option>
+          <option value="false">No WiFi</option>
         </select>
         <select type="text" placeholder="Location" className = "loc">
           <option value="" selected disabled>Location</option>

@@ -8,6 +8,7 @@ function Places() {
   const queryParams = new URLSearchParams(location.search);
   const ratingParam = queryParams.get('rating');
   const wifiParam = queryParams.get('wifi');
+  const searchParam = queryParams.get('search');
 
   const [allPlaces, setPlaces] = useState(null);
   const [selectedPlace, setSelectedPlace] = useState(null);
@@ -56,7 +57,7 @@ function Places() {
       setPlaces(data.data);
       // selects the first place in the list
       selectPlace(data.data[0]);
-      filterPlaces(data.data, ratingParam, wifiParam);
+      filterPlaces(data.data, searchParam, ratingParam, wifiParam);
     } else {
       console.log("Error fetching places");
     }
@@ -107,17 +108,25 @@ function Places() {
     }
   };
 
-  const filterPlaces = (places, rating, wifi) => {
+  const filterPlaces = (places, search, rating, wifi) => {
     let filtered = places;
-
+  
+    if (search) {
+      filtered = filtered.filter((place) => 
+        place.name.toLowerCase().includes(search.toLowerCase()) ||
+        place.city.toLowerCase().includes(search.toLowerCase()) ||
+        place.address.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+  
     if (rating) {
-      filtered = places.filter((place) => place.overall_rating >= parseFloat(rating));
+      filtered = filtered.filter((place) => place.overall_rating >= parseFloat(rating));
     } 
     
     if (wifi) {
       filtered = filtered.filter((place) => place.wifi_quality === wifi);
     }
-
+  
     setFilteredPlaces(filtered);
   };
 
@@ -166,9 +175,9 @@ function Places() {
     setAlphabeticalOrder(alphabeticalOrder === 'asc' ? 'desc' : 'asc'); // Toggle sorting order
   };
 
-  useEffect(() => {
-    getPlaces();
-  }, [ratingParam, wifiParam]);
+useEffect(() => {
+  getPlaces();
+}, [searchParam, ratingParam, wifiParam]);
 
   return (
     <div className='page-container'>
